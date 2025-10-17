@@ -386,6 +386,12 @@
     border-collapse: collapse;
   }
 
+  thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
   th {
     background-color: #03A9F4;
     color: #fff;
