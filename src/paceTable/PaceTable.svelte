@@ -35,6 +35,10 @@
   let prevSelectedMaxPace = DEFAULT_MAX_PACE;
   const vmaRange = Array.from({length: 41}, (_, i) => 10 + i * 0.5);
 
+  // Loading state to prevent concurrent API calls
+  let isLoading = false;
+  let fetchTimeout = null;
+
     // Mapping of numeric distances to human-readable names
   const distanceDisplayNames = {
     '1609.34': 'Mile',
@@ -75,8 +79,16 @@
 
   /**
    * Fetches pace data from an API endpoint and updates local state.
+   * Includes loading flag to prevent concurrent calls.
    */
   async function fetchPaceData() {
+    // Prevent concurrent API calls
+    if (isLoading) {
+      console.log('Skipping fetch: already loading');
+      return;
+    }
+
+    isLoading = true;
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/generate_table`, {
         method: 'POST',
@@ -105,7 +117,25 @@
       }
     } catch (error) {
       console.error('Error:', error);
+    } finally {
+      isLoading = false;
     }
+  }
+
+  /**
+   * Debounced version of fetchPaceData to avoid multiple simultaneous calls.
+   * Waits 150ms after the last change before making the API call.
+   */
+  function debouncedFetchPaceData() {
+    // Clear any pending fetch
+    if (fetchTimeout) {
+      clearTimeout(fetchTimeout);
+    }
+
+    // Schedule new fetch after 150ms of inactivity
+    fetchTimeout = setTimeout(() => {
+      fetchPaceData();
+    }, 150);
   }
 
   /**
@@ -205,7 +235,7 @@
 
   $: if ($selectedAthletes) {
     athletes = $selectedAthletes.filter((a) => a.visible);
-    fetchPaceData();
+    debouncedFetchPaceData();
   }
 
   $: if (!$isLoadingRecords && paceData.length > 0) {
@@ -221,11 +251,11 @@
       errorMessage = '';
       prevSelectedMinPace = $selectedMinPace;
       prevSelectedMaxPace = $selectedMaxPace;
-      fetchPaceData();
+      debouncedFetchPaceData();
     }
   }
 
-  $: $distances, fetchPaceData();
+  $: $distances, debouncedFetchPaceData();
 </script>
 
 <div class="top-container">
