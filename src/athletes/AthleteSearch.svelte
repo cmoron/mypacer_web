@@ -327,7 +327,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     position: absolute;
-    z-index: 1;
+    z-index: 100;
   }
 
   .progress-bar {
