@@ -46,6 +46,40 @@ npm run build
 ```
 This command generates static files in the `public` folder which can be deployed.
 
+## Docker & CI/CD
+
+- Image multi-stage disponible via `Dockerfile` (build arg `VITE_API_URL`, défaut `https://api.mypacer.fr`).
+  ```sh
+  docker build --target prod -t mypacer_web:latest-prod --build-arg VITE_API_URL=https://api.mypacer.fr .
+  ```
+- CI (`.github/workflows/ci.yml`) : `npm ci`, lint, build sur chaque push/PR.
+- Publication d'image GHCR (`.github/workflows/docker.yml`) vers `ghcr.io/cmoron/mypacer_web:latest-prod` + tags semver/sha.
+
+### Testing the Production Image Locally
+To verify that the production Docker image works correctly before deployment, you can follow these steps:
+
+1.  **Build the production image locally:**
+    From the `mypacer_web` directory, run the build command. Let's give it a temporary tag like `test-web-prod`.
+    ```bash
+    docker build -t test-web-prod .
+    ```
+
+2.  **Run a container from the image:**
+    This command starts a container in the background and maps port 8080 on your host to port 80 inside the container (where Nginx is listening).
+    ```bash
+    docker run -d --name test-web-container -p 8080:80 test-web-prod
+    ```
+
+3.  **Verify in your browser:**
+    Open `http://localhost:8080` in your web browser. The application should load and be fully functional.
+
+4.  **Clean up:**
+    Once you've finished testing, stop and remove the temporary container.
+    ```bash
+    docker stop test-web-container
+    docker rm test-web-container
+    ```
+
 ## Contributing
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
