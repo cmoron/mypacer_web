@@ -23,7 +23,8 @@
     isLoading[athlete.id] = true;
     try {
       const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/get_athlete_records?ident=${encodeURIComponent(athlete.id)}`);
+        `${import.meta.env.VITE_API_URL}/get_athlete_records?ident=${encodeURIComponent(athlete.id)}`
+      );
       if (response.ok) {
         return response.json();
       } else {
@@ -68,12 +69,14 @@
     selectedAthletes.toggleVisible(athlete.id);
     if (selectedAthletes.isAthleteVisible(athlete.id)) {
       selectedAthletes.setLoading(athlete.id, true);
-      fetchAthleteRecords(athlete).then((records) => {
-        selectedAthletes.setRecords(athlete.id, records);
-      }).catch((error) => {
-        console.error('Error fetching athlete records:', error);
-        selectedAthletes.setLoading(athlete.id, false);
-      });
+      fetchAthleteRecords(athlete)
+        .then((records) => {
+          selectedAthletes.setRecords(athlete.id, records);
+        })
+        .catch((error) => {
+          console.error('Error fetching athlete records:', error);
+          selectedAthletes.setLoading(athlete.id, false);
+        });
     }
   }
 
@@ -109,8 +112,8 @@
 
     try {
       const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/get_athletes_from_db?name=${encodeURIComponent(query)}`,
-          {signal},
+        `${import.meta.env.VITE_API_URL}/get_athletes_from_db?name=${encodeURIComponent(query)}`,
+        {signal}
       );
       if (response.ok) {
         const data = await response.json();
@@ -142,11 +145,13 @@
   function selectAthlete(athlete) {
     searchQuery = '';
     selectedAthletes.addAthlete(athlete);
-    fetchAthleteRecords(athlete).then((records) => {
-      selectedAthletes.setRecords(athlete.id, records);
-    }).catch((error) => {
-      console.error('Error fetching athlete records:', error);
-    });
+    fetchAthleteRecords(athlete)
+      .then((records) => {
+        selectedAthletes.setRecords(athlete.id, records);
+      })
+      .catch((error) => {
+        console.error('Error fetching athlete records:', error);
+      });
     athleteSuggestions.set([]);
   }
 
@@ -195,19 +200,19 @@
       window.removeEventListener('click', handleClickOutside);
     };
   });
-
 </script>
 
 <div class="athlete-search">
-
   <div class="search-box">
-    <input type="text"
-           class="search-input"
-           bind:value={searchQuery}
-           on:focus={handleFocus}
-           on:input="{() => fetchAthletes(searchQuery)}"
-           placeholder="Rechercher un athlète..."
-           bind:this={inputElement} />
+    <input
+      type="text"
+      class="search-input"
+      bind:value={searchQuery}
+      on:focus={handleFocus}
+      on:input={() => fetchAthletes(searchQuery)}
+      placeholder="Rechercher un athlète..."
+      bind:this={inputElement}
+    />
     <i class="fas fa-search search-icon"></i>
   </div>
   {#if $databaseStatus.num_athletes}
@@ -246,8 +251,8 @@
           type="checkbox"
           checked={athlete.visible}
           on:change={() => toggleAthleteRecords(athlete)}
-          >
-          <span class="slider round"></span>
+        />
+        <span class="slider round"></span>
       </label>
       <button on:click={() => deleteAthlete(athlete)} class="delete-athlete-btn">x</button>
       <span class="color-indicator" style="background-color: {athlete.color};"></span>
@@ -255,17 +260,16 @@
         {athlete.name}
       </a>
       <span>
-      {#if athlete.sexe}
-        <i class={`fa ${athlete.sexe === 'M' ? 'fa-mars' : 'fa-venus'}`}></i>
-      {/if}
-      <i class="fas fa-external-link-alt"></i>
+        {#if athlete.sexe}
+          <i class={`fa ${athlete.sexe === 'M' ? 'fa-mars' : 'fa-venus'}`}></i>
+        {/if}
+        <i class="fas fa-external-link-alt"></i>
       </span>
       {#if isLoadingRecords(athlete.id)}
         <div class="spinner"></div>
       {/if}
     </div>
   {/each}
-
 </div>
 
 <style>
@@ -305,11 +309,11 @@
   }
 
   .fa-mars {
-    color: #1565C0;
+    color: #1565c0;
   }
 
   .fa-venus {
-    color: #EC407A;
+    color: #ec407a;
   }
 
   .suggestions .license {
@@ -333,7 +337,7 @@
   .progress-bar {
     position: absolute;
     height: 3px;
-    background-color: #03A9F4;
+    background-color: #03a9f4;
     width: 0%;
     top: 0;
     left: 0;
@@ -397,5 +401,4 @@
   .database-status a {
     font-size: 11px;
   }
-
 </style>

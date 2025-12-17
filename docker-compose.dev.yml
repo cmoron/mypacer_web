@@ -1,0 +1,15 @@
+services:
+  web:
+    build:
+      context: .
+      target: dev
+    container_name: mypacer-web-dev
+    env_file: .env
+    ports:
+      - '5173:5173'
+    volumes:
+      - .:/app # Mount source code for hot reload
+      - /app/node_modules # Preserve node_modules from image
+    command: npm run dev -- --host 0.0.0.0
+    stdin_open: true
+    tty: true

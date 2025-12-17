@@ -33,12 +33,11 @@
       unsubscribeShowWorldRecords();
     };
   });
-
 </script>
 
 <div class="world-records">
   <label class="switch">
-    <input id="wr-switch" type="checkbox" bind:checked={$showWorldRecords}>
+    <input id="wr-switch" type="checkbox" bind:checked={$showWorldRecords} />
     <span class="slider round"></span>
   </label>
   <label class="switch-label" for="wr-switch">WORLD RECORDS</label>
@@ -71,11 +70,11 @@
 
   .men {
     background-color: gold;
-    color: #1565C0;
+    color: #1565c0;
   }
 
   .women {
     background-color: gold;
-    color: #EC407A;
+    color: #ec407a;
   }
 </style>
