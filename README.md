@@ -9,10 +9,9 @@
 
 MyPacer Web est une application Svelte qui permet aux coureurs de :
 
-- **Calculer des tables d'allure** personnalisées pour différentes distances
+- **Afficher des tables d'allure** personnalisées pour différentes distances
 - **Rechercher des athlètes** dans la base de données de la Fédération Française d'Athlétisme (FFA)
 - **Afficher les records personnels** des athlètes directement dans le tableau d'allure
-- **Calculer des allures basées sur VMA** (Vitesse Maximale Aérobie)
 - **Ajouter des distances personnalisées** en plus des distances standards
 
 L'application communique avec une API FastAPI ([mypacer_api](https://github.com/cmoron/mypacer_api)) qui gère la logique métier et l'accès aux données.
@@ -26,20 +25,15 @@ L'application communique avec une API FastAPI ([mypacer_api](https://github.com/
 - Distances standards (100m, 200m, 400m, 800m, 1000m, 1500m, mile, 3000m, 5km, 10km, semi, marathon)
 - Ajout/suppression de distances personnalisées
 - Affichage en temps, vitesse et allure
+- Affichage d'une colonne de pourcentage VMA
 
 ### Recherche d'athlètes FFA
 
 - Recherche par nom dans la base de données FFA
-- Affichage des informations de l'athlète (nom, club, catégorie)
 - Visualisation des records personnels
 - Affichage des records dans le tableau d'allure avec code couleur
 - Gestion de plusieurs athlètes simultanément
-
-### Calcul VMA
-
-- Saisie de VMA personnalisée
-- Calcul automatique des allures basées sur % VMA
-- Affichage dans le tableau avec les autres données
+- Lien direct vers la fiche FFA de l'athlète
 
 ### Responsive Design
 
