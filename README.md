@@ -4,6 +4,11 @@
 
 [![CI](https://github.com/cmoron/mypacer_web/actions/workflows/ci.yml/badge.svg)](https://github.com/cmoron/mypacer_web/actions/workflows/ci.yml)
 [![Docker](https://github.com/cmoron/mypacer_web/actions/workflows/docker.yml/badge.svg)](https://github.com/cmoron/mypacer_web/actions/workflows/docker.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cmoron_mypacer_web&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cmoron_mypacer_web)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=cmoron_mypacer_web&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=cmoron_mypacer_web)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=cmoron_mypacer_web&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=cmoron_mypacer_web)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=cmoron_mypacer_web&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=cmoron_mypacer_web)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=cmoron_mypacer_web&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=cmoron_mypacer_web)
 
 ## 📋 Vue d'ensemble
 
