@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------------
 // SINGLE SOURCE OF TRUTH for the running‑pace table settings.
 // ---------------------------------------------------------------------------
-import { writable } from 'svelte/store';
+import {writable} from 'svelte/store';
 import {
   DEFAULT_MIN_PACE,
   DEFAULT_MAX_PACE,
@@ -14,16 +14,19 @@ import {
 // ─────────────────────────────────────────────────────────────────────────────
 //  Pace‑range stores
 // ─────────────────────────────────────────────────────────────────────────────
-export const selectedMinPace   = writable(DEFAULT_MIN_PACE);
-export const selectedMaxPace   = writable(DEFAULT_MAX_PACE);
+export const selectedMinPace = writable(DEFAULT_MIN_PACE);
+export const selectedMaxPace = writable(DEFAULT_MAX_PACE);
 export const selectedIncrement = writable(DEFAULT_INCREMENT);
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  Distances (core + user custom)  ─ triées en permanence
 // ─────────────────────────────────────────────────────────────────────────────
 function loadCustom() {
-  try { return JSON.parse(localStorage.getItem('customDistances') ?? '[]'); }
-  catch { return []; }
+  try {
+    return JSON.parse(localStorage.getItem('customDistances') ?? '[]');
+  } catch {
+    return [];
+  }
 }
 function saveCustom(customList) {
   localStorage.setItem('customDistances', JSON.stringify(customList));
@@ -37,10 +40,7 @@ function persist(fullList) {
   saveCustom(fullList.filter((d) => !DEFAULT_DISTANCES.includes(d)));
 }
 
-export const distances = writable([
-  ...DEFAULT_DISTANCES,
-  ...loadCustom(),
-].sort((a, b) => a - b));
+export const distances = writable([...DEFAULT_DISTANCES, ...loadCustom()].sort((a, b) => a - b));
 
 // keep storage in sync even if the store is mutated directly
 // (e.g. via `$distances = …` dans un composant)
@@ -51,12 +51,7 @@ distances.subscribe(persist);
 // ─────────────────────────────────────────────────────────────────────────────
 export function addDistance(raw) {
   const value = Number.parseInt(raw, 10);
-  if (
-    Number.isNaN(value) ||
-    value <= 0 ||
-    value > MAX_CUSTOM_DISTANCE ||
-    DEFAULT_DISTANCES.includes(value)
-  ) return;
+  if (Number.isNaN(value) || value <= 0 || value > MAX_CUSTOM_DISTANCE || DEFAULT_DISTANCES.includes(value)) return;
 
   distances.update((curr) => {
     if (curr.includes(value)) return curr; // duplicate
@@ -77,4 +72,4 @@ export function removeDistance(value) {
 }
 
 // Re‑export core constants for convenience in components
-export { DEFAULT_DISTANCES } from '../utils/constants.js';
+export {DEFAULT_DISTANCES} from '../utils/constants.js';

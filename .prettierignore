@@ -1,0 +1,22 @@
+# Dependencies
+node_modules
+package-lock.json
+
+# Build outputs
+dist
+build
+.svelte-kit
+
+# Coverage
+coverage
+
+# Environment
+.env
+.env.*
+
+# IDE
+.vscode
+.idea
+
+# Misc
+*.log

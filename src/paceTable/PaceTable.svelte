@@ -1,15 +1,9 @@
 <script>
-  import { onMount } from 'svelte';
-  import { get } from 'svelte/store';
+  import {onMount} from 'svelte';
 
-  import { formatPace, formatSpeed, formatTime } from '../utils/timeUtils.js';
-  import { setupStore } from '../utils/storeUtils.js';
-  import {
-    DEFAULT_INCREMENT,
-    DEFAULT_MIN_PACE,
-    DEFAULT_MAX_PACE,
-    DEFAULT_VMA,
-  } from '../utils/constants.js';
+  import {formatPace, formatSpeed, formatTime} from '../utils/timeUtils.js';
+  import {setupStore} from '../utils/storeUtils.js';
+  import {DEFAULT_INCREMENT, DEFAULT_MIN_PACE, DEFAULT_MAX_PACE, DEFAULT_VMA} from '../utils/constants.js';
 
   import {
     selectedMinPace,
@@ -21,10 +15,10 @@
     DEFAULT_DISTANCES,
   } from './paceTableStore.js';
 
-  import { showWorldRecords, worldRecords, isLoadingRecords } from '../worldRecords/worldRecordsStore.js';
-  import { selectedAthletes } from '../athletes/athletesStore.js';
+  import {showWorldRecords, worldRecords, isLoadingRecords} from '../worldRecords/worldRecordsStore.js';
+  import {selectedAthletes} from '../athletes/athletesStore.js';
   import AthleteSearch from '../athletes/AthleteSearch.svelte';
-  import { showVMA, selectedVMA } from './vmaStore.js';
+  import {showVMA, selectedVMA} from './vmaStore.js';
 
   // State variables for storing pace data and table columns
   let paceData = [];
@@ -39,7 +33,7 @@
   let isLoading = false;
   let fetchTimeout = null;
 
-    // Mapping of numeric distances to human-readable names
+  // Mapping of numeric distances to human-readable names
   const distanceDisplayNames = {
     '1609.34': 'Mile',
     '5000': '5km',
@@ -107,10 +101,10 @@
         paceData = await response.json();
         if (paceData.length > 0) {
           columns = Object.keys(paceData[0])
-              .filter((key) => key !== 'pace' && key != 'speed')
-              .sort((a, b) => parseInt(a) - parseInt(b))
-              .map(Number)
-              .sort((a, b) => a - b);
+            .filter((key) => key !== 'pace' && key != 'speed')
+            .sort((a, b) => parseInt(a) - parseInt(b))
+            .map(Number)
+            .sort((a, b) => a - b);
         }
       } else {
         console.error('Error fetching data from the API');
@@ -171,36 +165,43 @@
    */
   function isWR(distance, time, record) {
     if (!record) return false;
-    const timeDiff = Number(distance) * Number($selectedIncrement) / 1000;
+    const timeDiff = (Number(distance) * Number($selectedIncrement)) / 1000;
     const prevTime = time + timeDiff;
     const nextTime = time - timeDiff;
-    return Math.abs(time - record) < Math.abs(prevTime - record) &&
-      Math.abs(time - record) < Math.abs(nextTime - record);
+    return (
+      Math.abs(time - record) < Math.abs(prevTime - record) && Math.abs(time - record) < Math.abs(nextTime - record)
+    );
   }
 
   /**
-  * Returns the color of the athlete record for a given cell in the table.
-  * @param {string} distance - The distance for which to check the record.
-  * @param {number} time - The time achieved for the distance.
-  * @return {string} - The color of the athlete record, or an empty string if none.
-  */
+   * Returns the color of the athlete record for a given cell in the table.
+   * @param {string} distance - The distance for which to check the record.
+   * @param {number} time - The time achieved for the distance.
+   * @return {string} - The color of the athlete record, or an empty string if none.
+   */
   function getAthleteRecordColor(distance, time) {
-    const timeDiff = Number(distance) * Number($selectedIncrement) / 1000;
+    const timeDiff = (Number(distance) * Number($selectedIncrement)) / 1000;
     const prevTime = time + timeDiff;
     const nextTime = time - timeDiff;
     const athleteColors = [];
 
     for (const athlete of athletes) {
       const record = athlete.records[distance];
-      if (Math.abs(time - record) < Math.abs(prevTime - record) &&
-        Math.abs(time - record) <= Math.abs(nextTime - record)) {
+      if (
+        Math.abs(time - record) < Math.abs(prevTime - record) &&
+        Math.abs(time - record) <= Math.abs(nextTime - record)
+      ) {
         athleteColors.push(athlete.color);
       }
     }
 
     if (athleteColors.length > 1) {
-      const gradient = athleteColors.map((color, index) =>
-        `${color} ${index * 100 / athleteColors.length}%, ${color} ${(index + 1) * 100 / athleteColors.length}%`).join(', ');
+      const gradient = athleteColors
+        .map(
+          (color, index) =>
+            `${color} ${(index * 100) / athleteColors.length}%, ${color} ${((index + 1) * 100) / athleteColors.length}%`
+        )
+        .join(', ');
       return `background: linear-gradient(to right, ${gradient}); color: #fff;`;
     } else if (athleteColors.length === 1) {
       return `background-color: ${athleteColors[0]}; color: #fff;`;
@@ -244,7 +245,7 @@
 
   $: if ($selectedMinPace && $selectedMaxPace && $selectedIncrement) {
     if ($selectedMinPace < $selectedMaxPace) {
-      errorMessage = 'L\'allure minimale ne peut pas être supérieure à l\'allure maximale.';
+      errorMessage = "L'allure minimale ne peut pas être supérieure à l'allure maximale.";
       $selectedMinPace = prevSelectedMinPace;
       $selectedMaxPace = prevSelectedMaxPace;
     } else {
@@ -255,11 +256,10 @@
     }
   }
 
-  $: $distances, debouncedFetchPaceData();
+  $: ($distances, debouncedFetchPaceData());
 </script>
 
 <div class="top-container">
-
   <!-- Athlete search component -->
   <AthleteSearch />
 
@@ -306,18 +306,13 @@
         on:keydown={(e) => e.key === 'Enter' && handleAddDistance()}
       />
 
-      <button
-        type="button"
-        class="add-btn"
-        aria-label="Ajouter une distance"
-        on:click={handleAddDistance}
-      >+</button>
+      <button type="button" class="add-btn" aria-label="Ajouter une distance" on:click={handleAddDistance}>+</button>
     </div>
   </div>
 
   <div class="vma-selector">
     <label class="switch">
-      <input id="vma-switch" type="checkbox" bind:checked={$showVMA}>
+      <input id="vma-switch" type="checkbox" bind:checked={$showVMA} />
       <span class="slider round"></span>
     </label>
     <label class="vma-switch-label" for="vma-switch">VMA</label>
@@ -333,7 +328,6 @@
   {#if errorMessage}
     <p class="error">{errorMessage}</p>
   {/if}
-
 </div>
 
 <!-- Table markup to display pace data -->
@@ -347,21 +341,24 @@
       <th>t/km</th>
       <th>km/h</th>
       {#each columns as column}
-          <th on:click={() => handleHighlight(event, column, null)}>
-              {distanceDisplayNames[column] || column}
-              {#if !DEFAULT_DISTANCES.includes(column)}
-                <span class="delete-btn" role="button" tabindex="0"
-                  aria-label="Supprimer"
-                  on:click={(e)=> {
-                    e.stopPropagation();
-                    console.log('removeDistance', column);
-                    console.log(DEFAULT_DISTANCES, column, DEFAULT_DISTANCES.includes(column) );
-                    removeDistance(column);
-                  }}
-                  on:keydown={(e)=>e.key==='Enter' && removeDistance(column)}
-                >X</span>
-              {/if}
-          </th>
+        <th on:click={() => handleHighlight(event, column, null)}>
+          {distanceDisplayNames[column] || column}
+          {#if !DEFAULT_DISTANCES.includes(column)}
+            <span
+              class="delete-btn"
+              role="button"
+              tabindex="0"
+              aria-label="Supprimer"
+              on:click={(e) => {
+                e.stopPropagation();
+                console.log('removeDistance', column);
+                console.log(DEFAULT_DISTANCES, column, DEFAULT_DISTANCES.includes(column));
+                removeDistance(column);
+              }}
+              on:keydown={(e) => e.key === 'Enter' && removeDistance(column)}>X</span
+            >
+          {/if}
+        </th>
       {/each}
     </tr>
   </thead>
@@ -370,17 +367,19 @@
     {#each paceData as row, rowIndex}
       <tr on:click={(event) => handleHighlight(event, null, row)}>
         {#if $showVMA}
-          <td class:highlighted={highlighted.row === row}>{Math.round(100 * row.speed / $selectedVMA)}%</td>
+          <td class:highlighted={highlighted.row === row}>{Math.round((100 * row.speed) / $selectedVMA)}%</td>
         {/if}
         <td class:highlighted={highlighted.row === row} class="col-head">{formatPace(row.pace)}</td>
         <td class:highlighted={highlighted.row === row} class="col-head">{formatSpeed(row.speed)}</td>
         {#each columns as column, columnIndex}
-          <td on:click={(event) => handleHighlight(event, column, row)}
-              class:highlighted={highlighted.column === column || highlighted.row === row}
-              class:men-record={$showWorldRecords && isMenWR(column, row[column])}
-              class:women-record={$showWorldRecords && isWomenWR(column, row[column])}
-              style="{getAthleteRecordColor(column, row[column])}">
-              {formatTime(row[column], column < 800)}
+          <td
+            on:click={(event) => handleHighlight(event, column, row)}
+            class:highlighted={highlighted.column === column || highlighted.row === row}
+            class:men-record={$showWorldRecords && isMenWR(column, row[column])}
+            class:women-record={$showWorldRecords && isWomenWR(column, row[column])}
+            style={getAthleteRecordColor(column, row[column])}
+          >
+            {formatTime(row[column], column < 800)}
           </td>
         {/each}
       </tr>
@@ -412,7 +411,7 @@
     margin-bottom: 5px;
   }
 
-  table{
+  table {
     border-collapse: collapse;
   }
 
@@ -423,7 +422,7 @@
   }
 
   th {
-    background-color: #03A9F4;
+    background-color: #03a9f4;
     color: #fff;
     cursor: pointer;
     padding: 3px;
@@ -442,11 +441,11 @@
   }
 
   tr:hover {
-    background-color: #B3E5FC;
+    background-color: #b3e5fc;
   }
 
   .highlighted {
-    background-color: #B3E5FC;
+    background-color: #b3e5fc;
   }
 
   .col-head {
@@ -463,12 +462,12 @@
 
   .men-record {
     background-color: gold;
-    color: #1565C0;
+    color: #1565c0;
   }
 
   .women-record {
     background-color: gold;
-    color: #EC407A;
+    color: #ec407a;
   }
 
   .error {
@@ -482,8 +481,8 @@
   .custom-dist {
     display: flex;
     align-items: center;
-    gap: .4rem;
-    margin: .5rem 0 .5rem;
+    gap: 0.4rem;
+    margin: 0.5rem 0 0.5rem;
   }
 
   .custom-dist input {
@@ -495,7 +494,7 @@
     height: 24px;
     border: none;
     border-radius: 4px;
-    background: #03A9F4;
+    background: #03a9f4;
     color: #fff;
     font-size: 1.4rem;
     font-weight: 700;
@@ -503,22 +502,22 @@
     cursor: pointer;
     display: grid;
     place-items: center;
-    transition: background .2s;
+    transition: background 0.2s;
   }
 
   .add-btn:hover,
   .add-btn:focus-visible {
-    background: #0288D1;          /* bleu 600 – plus sombre */
+    background: #0288d1; /* bleu 600 – plus sombre */
     outline: none;
   }
 
   .delete-btn {
-      cursor:pointer;
-      font-weight:bold;
-      color:#ffebee
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffebee;
   }
 
   .delete-btn:hover {
-      color:#b71c1c
+    color: #b71c1c;
   }
 </style>

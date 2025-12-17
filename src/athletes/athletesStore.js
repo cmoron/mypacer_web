@@ -90,12 +90,12 @@ function createAthleteStore() {
 
     // Update an athlete's data
     setLoading: (athleteId, isLoading) => {
-      update((athletes) => athletes.map((a) => a.id === athleteId ? {...a, isLoading} : a));
+      update((athletes) => athletes.map((a) => (a.id === athleteId ? {...a, isLoading} : a)));
     },
 
     // Update an athlete's records
     setRecords: (athleteId, records) => {
-      update((athletes) => athletes.map((a) => a.id === athleteId ? {...a, records, isLoading: false} : a));
+      update((athletes) => athletes.map((a) => (a.id === athleteId ? {...a, records, isLoading: false} : a)));
     },
 
     setAllInvisible: () => {
@@ -104,7 +104,7 @@ function createAthleteStore() {
 
     // Toggle the athlete's visibility
     toggleVisible: (athleteId) => {
-      update((athletes) => athletes.map((a) => a.id === athleteId ? {...a, visible: !a.visible} : a));
+      update((athletes) => athletes.map((a) => (a.id === athleteId ? {...a, visible: !a.visible} : a)));
     },
 
     isAthleteVisible: (athleteId) => {
@@ -124,7 +124,6 @@ function createAthleteStore() {
       colorUsage.fill(false);
       set([]);
     },
-
   };
 }
 

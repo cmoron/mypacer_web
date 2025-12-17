@@ -7,15 +7,29 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext .js,.svelte"
+    "lint": "eslint . --ext .js,.svelte",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "coverage": "vitest run --coverage"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^3.0.2",
+    "@vitest/coverage-v8": "^4.0.16",
+    "@vitest/ui": "^4.0.16",
     "eslint": "^8.57.0",
     "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-svelte": "^2.35.1",
+    "happy-dom": "^20.0.11",
+    "prettier": "^3.7.4",
+    "prettier-plugin-svelte": "^3.4.1",
     "svelte": "^4.2.12",
-    "vite": "^5.1.6"
+    "vite": "^5.1.6",
+    "vitest": "^4.0.16"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
