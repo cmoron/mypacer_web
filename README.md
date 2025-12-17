@@ -8,6 +8,7 @@
 ## 📋 Vue d'ensemble
 
 MyPacer Web est une application Svelte qui permet aux coureurs de :
+
 - **Calculer des tables d'allure** personnalisées pour différentes distances
 - **Rechercher des athlètes** dans la base de données de la Fédération Française d'Athlétisme (FFA)
 - **Afficher les records personnels** des athlètes directement dans le tableau d'allure
@@ -19,6 +20,7 @@ L'application communique avec une API FastAPI ([mypacer_api](https://github.com/
 ## ✨ Fonctionnalités
 
 ### Table d'allure interactive
+
 - Sélection de la plage d'allure (min/max)
 - Incrément configurable
 - Distances standards (100m, 200m, 400m, 800m, 1000m, 1500m, mile, 3000m, 5km, 10km, semi, marathon)
@@ -26,6 +28,7 @@ L'application communique avec une API FastAPI ([mypacer_api](https://github.com/
 - Affichage en temps, vitesse et allure
 
 ### Recherche d'athlètes FFA
+
 - Recherche par nom dans la base de données FFA
 - Affichage des informations de l'athlète (nom, club, catégorie)
 - Visualisation des records personnels
@@ -33,11 +36,13 @@ L'application communique avec une API FastAPI ([mypacer_api](https://github.com/
 - Gestion de plusieurs athlètes simultanément
 
 ### Calcul VMA
+
 - Saisie de VMA personnalisée
 - Calcul automatique des allures basées sur % VMA
 - Affichage dans le tableau avec les autres données
 
 ### Responsive Design
+
 - Interface adaptée desktop et mobile
 - Navigation tactile optimisée
 
@@ -95,6 +100,7 @@ make coverage
 - **104 tests** passent
 
 **Modules testés à 100%** :
+
 - ✅ `athletesStore.js` (gestion des athlètes)
 - ✅ `paceTableStore.js` (gestion de la table d'allure)
 - ✅ `vmaStore.js` (gestion VMA)
@@ -123,11 +129,13 @@ make ci             # Format + Lint + Tests + Build
 ### Images disponibles
 
 **Production** :
+
 ```bash
 docker pull ghcr.io/cmoron/mypacer_web:latest-prod
 ```
 
 **Tags disponibles** :
+
 - `latest-prod` - Dernière version stable
 - `vX.Y.Z-prod` - Versions spécifiques
 - `main-sha123` - Commits sur main
@@ -145,11 +153,13 @@ docker build --target dev -t mypacer_web:dev .
 ### docker-compose
 
 **Développement** :
+
 ```bash
 docker compose -f docker-compose.dev.yml up
 ```
 
 **Production** (via mypacer_infra) :
+
 ```bash
 # Voir https://github.com/cmoron/mypacer_infra
 ```
@@ -188,16 +198,19 @@ mypacer_web/
 ### Variables d'environnement
 
 **Développement** (`.env`) :
+
 ```bash
 VITE_API_URL=http://localhost:8000
 ```
 
 **Production** (`.env.production`) :
+
 ```bash
 VITE_API_URL=/api
 ```
 
 **Build Docker** :
+
 ```bash
 docker build --build-arg VITE_API_URL=https://api.mypacer.fr .
 ```
@@ -213,6 +226,7 @@ docker build --build-arg VITE_API_URL=https://api.mypacer.fr .
 ### Workflows GitHub Actions
 
 **CI (`ci.yml`)** - Sur push/PR vers `main` :
+
 - ✅ Format check (Prettier)
 - ✅ Linting (ESLint)
 - ✅ Tests (104 tests)
@@ -220,6 +234,7 @@ docker build --build-arg VITE_API_URL=https://api.mypacer.fr .
 - ✅ Build (Vite)
 
 **Docker (`docker.yml`)** :
+
 - Sur push `main` : Build + Push image GHCR
 - Sur tag `v*` : Build + Push + Release GitHub automatique
 
