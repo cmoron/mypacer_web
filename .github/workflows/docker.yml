@@ -59,7 +59,7 @@ jobs:
           cache-to: type=gha,mode=max
           platforms: linux/amd64
           build-args: |
-            VITE_API_URL=https://stage.api.mypacer.fr
+            VITE_API_URL=/api
 
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@1c608d11d69870c2092266b3f9a6f3abbf17002c # v2.0.0
@@ -117,7 +117,7 @@ jobs:
           cache-to: type=gha,mode=max
           platforms: linux/amd64
           build-args: |
-            VITE_API_URL=https://api.mypacer.fr
+            VITE_API_URL=/api
 
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@1c608d11d69870c2092266b3f9a6f3abbf17002c # v2.0.0
