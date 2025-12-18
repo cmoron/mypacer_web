@@ -30,16 +30,16 @@ jobs:
             cd ${{ secrets.INFRA_PATH }}
 
             echo "📥 Pulling latest staging image..."
-            docker compose -f docker-compose.staging.yml pull web-staging
+            docker-compose -f docker-compose.staging.yml pull web-staging
 
             echo "🔄 Restarting web container..."
-            docker compose -f docker-compose.staging.yml up -d web-staging
+            docker-compose -f docker-compose.staging.yml up -d web-staging
 
             echo "⏳ Waiting for container to be healthy..."
             sleep 5
 
             echo "✅ Deployment completed!"
-            docker compose -f docker-compose.staging.yml ps web-staging
+            docker-compose -f docker-compose.staging.yml ps web-staging
 
       - name: Verify deployment
         uses: appleboy/ssh-action@v1.0.3
