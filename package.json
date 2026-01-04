@@ -32,6 +32,8 @@
     "vitest": "^4.0.16"
   },
   "dependencies": {
+    "@sveltejs/adapter-static": "^3.0.10",
+    "@sveltejs/kit": "^2.49.2",
     "dotenv": "^16.4.5",
     "flag-icons": "^7.2.1",
     "lodash-es": "^4.17.21"

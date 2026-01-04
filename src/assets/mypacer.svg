@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="140" height="46"
+     viewBox="0 0 140 46"
+     role="img" aria-label="MyPacer">
+  <style>
+    .brand{
+      font-family: "Manrope", system-ui, -apple-system, sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+    }
+  </style>
+
+  <!-- Fond bleu MyPacer officiel -->
+  <rect x="0" y="3" width="60" height="40" fill="#03A9F4"/>
+
+  <!-- Texte aligné sur la même baseline -->
+  <text class="brand" x="8"  y="33" fill="#ffffff">My</text>
+  <text class="brand" x="60" y="33" fill="#03A9F4">Pacer</text>
+</svg>
