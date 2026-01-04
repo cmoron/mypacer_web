@@ -1,11 +1,19 @@
 <script>
   import '../app.css';
+  import Banner from '$lib/components/Banner.svelte';
+  import Footer from '$lib/components/Footer.svelte';
 </script>
 
 <div class="app-wrapper">
-  <main class="main-content">
-    <slot />
-  </main>
+  <Banner />
+
+  <div class="container">
+    <main class="main-content">
+      <slot />
+    </main>
+  </div>
+
+  <Footer />
 </div>
 
 <style>
@@ -17,12 +25,12 @@
 
   .main-content {
     flex: 1;
-    padding: 2rem 0;
+    padding: var(--spacing-xl) 0;
   }
 
   @media (max-width: 639px) {
     .main-content {
-      padding: 1.5rem 0;
+      padding: var(--spacing-lg) 0;
     }
   }
 </style>
