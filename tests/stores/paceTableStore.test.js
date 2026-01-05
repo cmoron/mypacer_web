@@ -8,8 +8,8 @@ import {
   addDistance,
   removeDistance,
   DEFAULT_DISTANCES,
-} from '../../src/paceTable/paceTableStore.js';
-import {DEFAULT_MIN_PACE, DEFAULT_MAX_PACE, DEFAULT_INCREMENT} from '../../src/utils/constants.js';
+} from '../../src/lib/stores/paceTableStore.js';
+import {DEFAULT_MIN_PACE, DEFAULT_MAX_PACE, DEFAULT_INCREMENT} from '../../src/lib/utils/constants.js';
 
 describe('paceTableStore', () => {
   beforeEach(() => {

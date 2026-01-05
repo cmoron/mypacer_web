@@ -1,7 +1,7 @@
 import {describe, it, expect} from 'vitest';
 import {get} from 'svelte/store';
-import {showVMA, selectedVMA} from '../../src/paceTable/vmaStore.js';
-import {DEFAULT_VMA} from '../../src/utils/constants.js';
+import {showVMA, selectedVMA} from '../../src/lib/stores/vmaStore.js';
+import {DEFAULT_VMA} from '../../src/lib/utils/constants.js';
 
 describe('vmaStore', () => {
   describe('showVMA', () => {
