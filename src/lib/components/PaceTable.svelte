@@ -16,7 +16,6 @@
     DEFAULT_DISTANCES,
   } from '$lib/stores/paceTableStore.js';
 
-  import {showWorldRecords, worldRecords, isLoadingRecords} from '$lib/stores/worldRecordsStore.js';
   import {selectedAthletes} from '$lib/stores/athletesStore.js';
   import AthleteSearch from '$lib/components/AthleteSearch.svelte';
   import {showVMA, selectedVMA} from '$lib/stores/vmaStore.js';
@@ -134,47 +133,6 @@
   }
 
   /**
-   * Checks if a given time for a distance is a men's world record.
-   * @param {string} distance - The distance for which to check the record.
-   * @param {number} time - The time achieved for the distance.
-   * @return {boolean} - True if the time is a world record for men; otherwise, false.
-   */
-  function isMenWR(distance, time) {
-    if ($isLoadingRecords) return false;
-    const record = $worldRecords['men'][distance];
-    return isWR(distance, time, record);
-  }
-
-  /**
-   * Checks if a given time for a distance is a women's world record.
-   * @param {string} distance - The distance for which to check the record.
-   * @param {number} time - The time achieved for the distance.
-   * @return {boolean} - True if the time is a world record for women; otherwise, false.
-   */
-  function isWomenWR(distance, time) {
-    if ($isLoadingRecords) return false;
-    const record = $worldRecords['women'][distance];
-    return isWR(distance, time, record);
-  }
-
-  /**
-   * General function to check if a time is a world record.
-   * @param {string} distance - The distance for which to check the record.
-   * @param {number} time - The time achieved.
-   * @param {number} record - The current world record time for the distance.
-   * @return {boolean} - True if the time is a world record; otherwise, false.
-   */
-  function isWR(distance, time, record) {
-    if (!record) return false;
-    const timeDiff = (Number(distance) * Number($selectedIncrement)) / 1000;
-    const prevTime = time + timeDiff;
-    const nextTime = time - timeDiff;
-    return (
-      Math.abs(time - record) < Math.abs(prevTime - record) && Math.abs(time - record) < Math.abs(nextTime - record)
-    );
-  }
-
-  /**
    * Returns the color of the athlete record for a given cell in the table.
    * @param {string} distance - The distance for which to check the record.
    * @param {number} time - The time achieved for the distance.
@@ -240,10 +198,6 @@
     debouncedFetchPaceData();
   }
 
-  $: if (!$isLoadingRecords && paceData.length > 0) {
-    paceData = paceData.map((row) => ({...row}));
-  }
-
   $: if ($selectedMinPace && $selectedMaxPace && $selectedIncrement) {
     if ($selectedMinPace < $selectedMaxPace) {
       errorMessage = "L'allure minimale ne peut pas être supérieure à l'allure maximale.";
@@ -263,9 +217,6 @@
 <div class="top-container">
   <!-- Athlete search component -->
   <AthleteSearch />
-
-  <!-- World records component -->
-  <!--<WorldRecords />-->
 
   <!-- Form to select pace range and increment -->
   <form>
@@ -376,8 +327,6 @@
           <td
             on:click={(event) => handleHighlight(event, column, row)}
             class:highlighted={highlighted.column === column || highlighted.row === row}
-            class:men-record={$showWorldRecords && isMenWR(column, row[column])}
-            class:women-record={$showWorldRecords && isWomenWR(column, row[column])}
             style={getAthleteRecordColor(column, row[column])}
           >
             {formatTime(row[column], column < 800)}
@@ -650,18 +599,6 @@
   }
 
   .col-head {
-    font-weight: var(--font-weight-bold);
-  }
-
-  .men-record {
-    background-color: var(--color-gold);
-    color: var(--color-male);
-    font-weight: var(--font-weight-bold);
-  }
-
-  .women-record {
-    background-color: var(--color-gold);
-    color: var(--color-female);
     font-weight: var(--font-weight-bold);
   }
 

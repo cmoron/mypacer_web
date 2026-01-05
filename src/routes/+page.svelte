@@ -1,5 +1,5 @@
 <script>
-  import PaceTable from '../paceTable/PaceTable.svelte';
+  import PaceTable from '$lib/components/PaceTable.svelte';
 </script>
 
 <svelte:head>
