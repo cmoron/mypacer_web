@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-  <title>MyPacer - Calculateur d'allure Running & Recherche FFA</title>
+  <title>MyPacer - Tableau d'allures & Recherche FFA</title>
 </svelte:head>
 
 <PaceTable />

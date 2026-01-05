@@ -275,36 +275,21 @@
 
 <style>
   .athlete-search {
-    margin-top: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
     position: relative;
+    width: 100%;
   }
 
   .search-box {
     position: relative;
     display: flex;
     align-items: center;
-    max-width: 100%;
-  }
-
-  @media (min-width: 640px) {
-    .search-box {
-      max-width: 75%;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .search-box {
-      max-width: 600px;
-    }
+    width: 100%;
   }
 
   .search-input {
     width: 100%;
-    padding: var(--spacing-md);
+    padding: 14px var(--spacing-md);
     padding-left: var(--spacing-xl);
-    margin-top: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
     font-size: var(--font-size-base);
     border: var(--border-width) solid var(--color-neutral-300);
     border-radius: var(--border-radius-lg);
@@ -312,9 +297,14 @@
     background-color: white;
   }
 
+  .search-input:hover {
+    border-color: var(--color-neutral-400);
+    box-shadow: 0 1px 6px rgba(32, 33, 36, 0.1);
+  }
+
   .search-input:focus {
     border-color: var(--color-primary-500);
-    box-shadow: 0 0 0 3px rgba(3, 169, 244, 0.1);
+    box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
     outline: none;
   }
 

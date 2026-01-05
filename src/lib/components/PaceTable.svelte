@@ -215,40 +215,46 @@
 </script>
 
 <div class="top-container">
-  <!-- Athlete search component -->
-  <AthleteSearch />
+  <div class="top-row">
+    <!-- Form Min/Max/Increment - Left side -->
+    <div class="pace-controls">
+      <form>
+        <div>
+          <label for="min-pace">Min.</label>
+          <select id="min-pace" class="material-select" bind:value={$selectedMinPace}>
+            {#each paceRange as pace}
+              <option value={pace}>{formatPace(pace)} / km</option>
+            {/each}
+          </select>
+        </div>
+        <div>
+          <label for="max-pace">Max.</label>
+          <select id="max-pace" class="material-select" bind:value={$selectedMaxPace}>
+            {#each paceRange as pace}
+              <option value={pace}>{formatPace(pace)} / km</option>
+            {/each}
+          </select>
+        </div>
+        <div>
+          <label for="increment">Incrément.</label>
+          <select id="increment" class="material-select" bind:value={$selectedIncrement}>
+            {#each incrementRange as increment}
+              <option value={increment}>{increment}"</option>
+            {/each}
+          </select>
+        </div>
+      </form>
+    </div>
 
-  <!-- Form to select pace range and increment -->
-  <form>
-    <div>
-      <label for="min-pace">Min.</label>
-      <select id="min-pace" class="material-select" bind:value={$selectedMinPace}>
-        {#each paceRange as pace}/km
-          <option value={pace}>{formatPace(pace)} / km</option>
-        {/each}
-      </select>
+    <!-- Athlete search - Right side -->
+    <div class="athlete-search-wrapper">
+      <AthleteSearch />
     </div>
-    <div>
-      <label for="max-pace">Max.</label>
-      <select id="max-pace" class="material-select" bind:value={$selectedMaxPace}>
-        {#each paceRange as pace}
-          <option value={pace}>{formatPace(pace)} / km</option>
-        {/each}
-      </select>
-    </div>
-    <div>
-      <label for="increment">Incrément.</label>
-      <select id="increment" class="material-select" bind:value={$selectedIncrement}>
-        {#each incrementRange as increment}
-          <option value={increment}>{increment}"</option>
-        {/each}
-      </select>
-    </div>
-  </form>
+  </div>
 
-  <!-- Ajout distance personnalisée -->
-  <div class="custom-dist">
-    <!--<label for="custom-dist">+ Dist (m)</label>-->
+  <!-- Bottom row: custom distance and VMA -->
+  <div class="bottom-row">
+    <!-- Ajout distance personnalisée -->
     <div class="custom-dist">
       <input
         type="number"
@@ -257,24 +263,23 @@
         min="1"
         on:keydown={(e) => e.key === 'Enter' && handleAddDistance()}
       />
-
       <button type="button" class="add-btn" aria-label="Ajouter une distance" on:click={handleAddDistance}>+</button>
     </div>
-  </div>
 
-  <div class="vma-selector">
-    <label class="switch">
-      <input id="vma-switch" type="checkbox" bind:checked={$showVMA} />
-      <span class="slider round"></span>
-    </label>
-    <label class="vma-switch-label" for="vma-switch">VMA</label>
-    {#if $showVMA}
-      <select bind:value={$selectedVMA}>
-        {#each vmaRange as vma}
-          <option value={vma}>{vma.toFixed(1)} km/h</option>
-        {/each}
-      </select>
-    {/if}
+    <div class="vma-selector">
+      <label class="switch">
+        <input id="vma-switch" type="checkbox" bind:checked={$showVMA} />
+        <span class="slider round"></span>
+      </label>
+      <label class="vma-switch-label" for="vma-switch">VMA</label>
+      {#if $showVMA}
+        <select class="vma-select" bind:value={$selectedVMA}>
+          {#each vmaRange as vma}
+            <option value={vma}>{vma.toFixed(1)} km/h</option>
+          {/each}
+        </select>
+      {/if}
+    </div>
   </div>
 
   {#if errorMessage}
@@ -337,8 +342,6 @@
   </tbody>
 </table>
 
-<div class="contact"><a href="mailto:contact@mypacer.fr">contact@mypacer.fr</a></div>
-
 <style>
   .top-container {
     display: flex;
@@ -347,8 +350,51 @@
     margin-bottom: var(--spacing-lg);
   }
 
+  .top-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    width: 100%;
+  }
+
   @media (min-width: 768px) {
-    .top-container {
+    .top-row {
+      flex-direction: row;
+      gap: var(--spacing-lg);
+    }
+  }
+
+  .pace-controls {
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media (min-width: 768px) {
+    .pace-controls {
+      flex: 0 0 calc(50% - var(--spacing-lg) / 2);
+    }
+  }
+
+  .athlete-search-wrapper {
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media (min-width: 768px) {
+    .athlete-search-wrapper {
+      flex: 0 0 calc(50% - var(--spacing-lg) / 2);
+    }
+  }
+
+  .bottom-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .bottom-row {
       flex-direction: row;
       flex-wrap: wrap;
       align-items: center;
@@ -362,49 +408,25 @@
     width: 100%;
   }
 
-  @media (min-width: 640px) {
-    form {
-      flex-direction: row;
-      flex-wrap: wrap;
-      width: auto;
-    }
-  }
-
   form > div {
     display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xs);
-  }
-
-  @media (min-width: 640px) {
-    form > div {
-      flex-direction: row;
-      align-items: center;
-    }
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-sm);
   }
 
   label {
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
     color: var(--color-neutral-700);
-    min-width: auto;
-  }
-
-  @media (min-width: 640px) {
-    label {
-      min-width: 100px;
-    }
+    min-width: 80px;
+    flex-shrink: 0;
   }
 
   label.vma-switch-label {
     min-width: 30px !important;
     margin-left: var(--spacing-sm);
-  }
-
-  @media (min-width: 640px) {
-    label.vma-switch-label {
-      margin-left: var(--spacing-lg);
-    }
+    flex-shrink: 0;
   }
 
   select {
@@ -415,13 +437,13 @@
     background-color: white;
     cursor: pointer;
     transition: all var(--transition-base);
-    width: 100%;
+    flex: 1;
+    min-width: 0;
   }
 
-  @media (min-width: 640px) {
-    select {
-      width: 140px;
-    }
+  select.vma-select {
+    flex: 0 0 auto;
+    width: 140px;
   }
 
   select:hover {
@@ -441,9 +463,10 @@
     width: 100%;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 640px) {
     .custom-dist {
       width: auto;
+      flex: 0 0 auto;
     }
   }
 
@@ -453,14 +476,7 @@
     border-radius: var(--border-radius-md);
     font-size: var(--font-size-sm);
     transition: all var(--transition-base);
-    flex: 1;
-  }
-
-  @media (min-width: 640px) {
-    .custom-dist input {
-      width: 180px;
-      flex: none;
-    }
+    width: 180px;
   }
 
   .custom-dist input:focus {
@@ -500,13 +516,8 @@
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
-    width: 100%;
-  }
-
-  @media (min-width: 768px) {
-    .vma-selector {
-      width: auto;
-    }
+    width: auto;
+    flex: 0 0 auto;
   }
 
   .error {
@@ -617,20 +628,4 @@
     background-color: rgba(255, 255, 255, 0.9);
   }
 
-  .contact {
-    margin-top: var(--spacing-lg);
-    text-align: center;
-    font-size: var(--font-size-sm);
-  }
-
-  .contact a {
-    color: var(--color-primary-500);
-    text-decoration: none;
-    transition: color var(--transition-base);
-  }
-
-  .contact a:hover {
-    color: var(--color-primary-700);
-    text-decoration: underline;
-  }
 </style>

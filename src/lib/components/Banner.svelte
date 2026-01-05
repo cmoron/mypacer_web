@@ -13,6 +13,9 @@
   <div class="banner-content">
     {@html myPacerSVG}
   </div>
+  <div class="banner-subtitle">
+    Tableau d'allures - Recherche d'athlètes FFA
+  </div>
 </header>
 
 <style>
@@ -37,6 +40,13 @@
     max-width: var(--container-max-width);
     margin: 0 auto;
     padding: 0 var(--container-padding);
+  }
+
+  .banner-subtitle {
+    text-align: center;
+    margin-top: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+    color: var(--color-neutral-600);
   }
 
   .banner-content :global(svg) {
