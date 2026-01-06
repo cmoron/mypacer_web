@@ -216,7 +216,12 @@
 
 <div class="top-container">
   <div class="top-row">
-    <!-- Form Min/Max/Increment - Left side -->
+    <!-- Athlete search - Left side -->
+    <div class="athlete-search-wrapper">
+      <AthleteSearch />
+    </div>
+
+    <!-- Form Min/Max/Increment - Right side -->
     <div class="pace-controls">
       <form>
         <div>
@@ -245,11 +250,6 @@
         </div>
       </form>
     </div>
-
-    <!-- Athlete search - Right side -->
-    <div class="athlete-search-wrapper">
-      <AthleteSearch />
-    </div>
   </div>
 
   <!-- Bottom row: custom distance and VMA -->
@@ -269,7 +269,7 @@
     <div class="vma-selector">
       <label class="switch">
         <input id="vma-switch" type="checkbox" bind:checked={$showVMA} />
-        <span class="slider round"></span>
+        <span class="switch slider round"></span>
       </label>
       <label class="vma-switch-label" for="vma-switch">VMA</label>
       {#if $showVMA}
@@ -298,8 +298,8 @@
       <th>t/km</th>
       <th>km/h</th>
       {#each columns as column}
-        <th on:click={() => handleHighlight(event, column, null)}>
-          {distanceDisplayNames[column] || column}
+        <th on:click={(event) => handleHighlight(event, column, null)}>
+          {distanceDisplayNames[String(column)] || column}
           {#if !DEFAULT_DISTANCES.includes(column)}
             <span
               class="delete-btn"
@@ -465,8 +465,8 @@
 
   @media (min-width: 640px) {
     .custom-dist {
-      width: auto;
-      flex: 0 0 auto;
+      /* width: auto; */
+      /* flex: 0 0 auto; */
     }
   }
 
@@ -476,7 +476,6 @@
     border-radius: var(--border-radius-md);
     font-size: var(--font-size-sm);
     transition: all var(--transition-base);
-    width: 180px;
   }
 
   .custom-dist input:focus {

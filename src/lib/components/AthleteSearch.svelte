@@ -289,7 +289,7 @@
   .search-input {
     width: 100%;
     padding: 14px var(--spacing-md);
-    padding-left: var(--spacing-xl);
+    padding-left: var(--spacing-2xl);
     font-size: var(--font-size-base);
     border: var(--border-width) solid var(--color-neutral-300);
     border-radius: var(--border-radius-lg);
