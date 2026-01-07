@@ -218,7 +218,7 @@
   </div>
   {#if $databaseStatus.num_athletes}
     <div class="database-status">
-      {$databaseStatus.num_athletes} athlètes de <a href="https://www.bases_athle.fr">bases.athle.fr</a>
+      {$databaseStatus.num_athletes} athlètes de <a href="https://bases.athle.fr">bases.athle.fr</a>
     </div>
   {/if}
 

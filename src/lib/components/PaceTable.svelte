@@ -1,5 +1,6 @@
 <script>
   import {onMount} from 'svelte';
+  import {browser} from '$app/environment';
   import {API_URL} from '$lib/config.js';
 
   import {formatPace, formatSpeed, formatTime} from '$lib/utils/timeUtils.js';
@@ -76,6 +77,9 @@
    * Includes loading flag to prevent concurrent calls.
    */
   async function fetchPaceData() {
+    // Only fetch on client side
+    if (!browser) return;
+
     // Prevent concurrent API calls
     if (isLoading) {
       console.log('Skipping fetch: already loading');
@@ -517,6 +521,7 @@
     gap: var(--spacing-sm);
     width: auto;
     flex: 0 0 auto;
+    min-height: var(--spacing-xxl);
   }
 
   .error {

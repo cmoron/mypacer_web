@@ -1,4 +1,3 @@
-// Force client-side rendering for the entire app
-// This is necessary because we use localStorage and browser APIs
-export const ssr = false;
-export const prerender = true; // Pre-render the HTML shell for SEO
+// Enable SSR for better SEO while allowing client-side features
+export const ssr = true;
+export const prerender = true;

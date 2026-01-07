@@ -3,6 +3,7 @@
 // SINGLE SOURCE OF TRUTH for the running‑pace table settings.
 // ---------------------------------------------------------------------------
 import {writable} from 'svelte/store';
+import {browser} from '$app/environment';
 import {
   DEFAULT_MIN_PACE,
   DEFAULT_MAX_PACE,
@@ -22,6 +23,7 @@ export const selectedIncrement = writable(DEFAULT_INCREMENT);
 //  Distances (core + user custom)  ─ triées en permanence
 // ─────────────────────────────────────────────────────────────────────────────
 function loadCustom() {
+  if (!browser) return [];
   try {
     return JSON.parse(localStorage.getItem('customDistances') ?? '[]');
   } catch {
@@ -29,6 +31,7 @@ function loadCustom() {
   }
 }
 function saveCustom(customList) {
+  if (!browser) return;
   localStorage.setItem('customDistances', JSON.stringify(customList));
 }
 
