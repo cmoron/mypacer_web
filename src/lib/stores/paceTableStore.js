@@ -3,13 +3,14 @@
 // SINGLE SOURCE OF TRUTH for the running‑pace table settings.
 // ---------------------------------------------------------------------------
 import {writable} from 'svelte/store';
+import {browser} from '$app/environment';
 import {
   DEFAULT_MIN_PACE,
   DEFAULT_MAX_PACE,
   DEFAULT_INCREMENT,
   DEFAULT_DISTANCES,
   MAX_CUSTOM_DISTANCE,
-} from '../utils/constants.js';
+} from '$lib/utils/constants.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  Pace‑range stores
@@ -22,6 +23,7 @@ export const selectedIncrement = writable(DEFAULT_INCREMENT);
 //  Distances (core + user custom)  ─ triées en permanence
 // ─────────────────────────────────────────────────────────────────────────────
 function loadCustom() {
+  if (!browser) return [];
   try {
     return JSON.parse(localStorage.getItem('customDistances') ?? '[]');
   } catch {
@@ -29,6 +31,7 @@ function loadCustom() {
   }
 }
 function saveCustom(customList) {
+  if (!browser) return;
   localStorage.setItem('customDistances', JSON.stringify(customList));
 }
 
@@ -72,4 +75,4 @@ export function removeDistance(value) {
 }
 
 // Re‑export core constants for convenience in components
-export {DEFAULT_DISTANCES} from '../utils/constants.js';
+export {DEFAULT_DISTANCES} from '$lib/utils/constants.js';

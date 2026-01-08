@@ -1,16 +1,21 @@
+import adapter from '@sveltejs/adapter-static';
 import {vitePreprocess} from '@sveltejs/vite-plugin-svelte';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 export default {
   preprocess: vitePreprocess(),
   kit: {
-    vite: {
-      define: {
-        'process.env': process.env,
-        'import.meta.env.VITE_API_URL': JSON.stringify(process.env.VITE_API_URL),
-      },
+    adapter: adapter({
+      pages: 'dist',
+      assets: 'dist',
+      fallback: 'index.html',
+      precompress: false,
+      strict: true,
+    }),
+    alias: {
+      $lib: 'src/lib',
+      $components: 'src/lib/components',
+      $stores: 'src/lib/stores',
+      $utils: 'src/lib/utils',
     },
   },
 };

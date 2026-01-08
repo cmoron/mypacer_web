@@ -1,6 +1,6 @@
 import {describe, it, expect, beforeEach} from 'vitest';
 import {get} from 'svelte/store';
-import {selectedAthletes} from '../../src/athletes/athletesStore.js';
+import {selectedAthletes} from '../../src/lib/stores/athletesStore.js';
 
 describe('athletesStore', () => {
   beforeEach(() => {

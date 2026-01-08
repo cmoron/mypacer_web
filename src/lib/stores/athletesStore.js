@@ -1,4 +1,5 @@
 import {writable} from 'svelte/store';
+import {browser} from '$app/environment';
 
 /**
  * A pool of colors to use for athlete color indicators.
@@ -18,7 +19,7 @@ const colorPool = [
   '#4CAF50',
 ];
 
-const storedColorUsage = JSON.parse(localStorage.getItem('colorUsage'));
+const storedColorUsage = browser ? JSON.parse(localStorage.getItem('colorUsage') || 'null') : null;
 const colorUsage = storedColorUsage || new Array(colorPool.length).fill(false);
 
 /**
@@ -34,7 +35,9 @@ function getNextColor() {
     index = 0;
   }
   colorUsage[index] = true;
-  localStorage.setItem('colorUsage', JSON.stringify(colorUsage));
+  if (browser) {
+    localStorage.setItem('colorUsage', JSON.stringify(colorUsage));
+  }
   return colorPool[index];
 }
 
@@ -46,7 +49,9 @@ function releaseColor(color) {
   const index = colorPool.indexOf(color);
   if (index !== -1) {
     colorUsage[index] = false;
-    localStorage.setItem('colorUsage', JSON.stringify(colorUsage));
+    if (browser) {
+      localStorage.setItem('colorUsage', JSON.stringify(colorUsage));
+    }
   }
 }
 

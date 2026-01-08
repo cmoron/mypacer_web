@@ -1,5 +1,5 @@
 import {describe, it, expect} from 'vitest';
-import {formatTime, formatPace, formatSpeed} from '../../src/utils/timeUtils.js';
+import {formatTime, formatPace, formatSpeed} from '../../src/lib/utils/timeUtils.js';
 
 describe('timeUtils', () => {
   describe('formatTime', () => {

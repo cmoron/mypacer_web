@@ -1,3 +1,5 @@
+import {browser} from '$app/environment';
+
 /**
  * Store utilities
  * @module utils/storeUtils
@@ -7,22 +9,25 @@
  * @return {function} initStoreFromLocalStorage
  */
 export function initStoreFromLocalStorage(store, key, defaultValue) {
-  const storedValue = localStorage.getItem(key);
-  let parsedValue;
-  if (storedValue !== null) {
-    if (typeof defaultValue === 'boolean') {
-      parsedValue = storedValue === 'true';
-    } else if (typeof defaultValue === 'number') {
-      parsedValue = parseFloat(storedValue);
+  let parsedValue = defaultValue;
+
+  if (browser) {
+    const storedValue = localStorage.getItem(key);
+    if (storedValue !== null) {
+      if (typeof defaultValue === 'boolean') {
+        parsedValue = storedValue === 'true';
+      } else if (typeof defaultValue === 'number') {
+        parsedValue = parseFloat(storedValue);
+      }
     }
-  } else {
-    parsedValue = defaultValue;
   }
 
   store.set(parsedValue);
 
   return store.subscribe((value) => {
-    localStorage.setItem(key, value.toString());
+    if (browser) {
+      localStorage.setItem(key, value.toString());
+    }
   });
 }
 

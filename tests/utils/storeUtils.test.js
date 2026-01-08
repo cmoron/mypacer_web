@@ -1,6 +1,6 @@
 import {describe, it, expect, beforeEach} from 'vitest';
 import {writable, get} from 'svelte/store';
-import {initStoreFromLocalStorage, setupStore} from '../../src/utils/storeUtils.js';
+import {initStoreFromLocalStorage, setupStore} from '../../src/lib/utils/storeUtils.js';
 
 describe('storeUtils', () => {
   beforeEach(() => {

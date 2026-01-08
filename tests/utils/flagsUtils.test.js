@@ -1,5 +1,5 @@
 import {describe, it, expect} from 'vitest';
-import {flagIso3ToIso2} from '../../src/utils/flagsUtils.js';
+import {flagIso3ToIso2} from '../../src/lib/utils/flagsUtils.js';
 
 describe('flagsUtils', () => {
   describe('flagIso3ToIso2', () => {

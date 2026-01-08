@@ -1,0 +1,47 @@
+/* Utility Classes */
+
+/* Container responsive */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+@media (min-width: 640px) {
+  .container {
+    --container-padding: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    --container-padding: var(--spacing-xl);
+  }
+}
+
+/* Text utilities responsive */
+.text-responsive {
+  font-size: var(--font-size-sm);
+}
+
+@media (min-width: 768px) {
+  .text-responsive {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* Visually hidden (pour accessibilité) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

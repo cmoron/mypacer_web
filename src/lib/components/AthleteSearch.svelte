@@ -2,8 +2,9 @@
   import {onMount} from 'svelte';
   import {writable} from 'svelte/store';
   import {debounce} from 'lodash-es';
-  import {selectedAthletes} from './athletesStore.js';
-  import {flagIso3ToIso2} from '../utils/flagsUtils.js';
+  import {API_URL} from '$lib/config.js';
+  import {selectedAthletes} from '$lib/stores/athletesStore.js';
+  import {flagIso3ToIso2} from '$lib/utils/flagsUtils.js';
   import '/node_modules/flag-icons/css/flag-icons.min.css';
 
   const athleteSuggestions = writable([]);
@@ -22,9 +23,7 @@
   async function fetchAthleteRecords(athlete) {
     isLoading[athlete.id] = true;
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/get_athlete_records?ident=${encodeURIComponent(athlete.id)}`
-      );
+      const response = await fetch(`${API_URL}/get_athlete_records?ident=${encodeURIComponent(athlete.id)}`);
       if (response.ok) {
         return response.json();
       } else {
@@ -43,7 +42,7 @@
    */
   async function fetchDatabaseStatus() {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/database_status`);
+      const response = await fetch(`${API_URL}/database_status`);
       if (response.ok) {
         const data = await response.json();
         if (data.last_update) {
@@ -111,10 +110,7 @@
     activeSearchCount++;
 
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/get_athletes_from_db?name=${encodeURIComponent(query)}`,
-        {signal}
-      );
+      const response = await fetch(`${API_URL}/get_athletes_from_db?name=${encodeURIComponent(query)}`, {signal});
       if (response.ok) {
         const data = await response.json();
         athleteSuggestions.set(data);
@@ -217,7 +213,7 @@
   </div>
   {#if $databaseStatus.num_athletes}
     <div class="database-status">
-      {$databaseStatus.num_athletes} athlètes de <a href="https://www.bases_athle.fr">bases.athle.fr</a>
+      {$databaseStatus.num_athletes} athlètes de <a href="https://bases.athle.fr">bases.athle.fr</a>
     </div>
   {/if}
 
@@ -274,73 +270,95 @@
 
 <style>
   .athlete-search {
-    margin-top: 10px;
-    margin-bottom: 10px;
     position: relative;
+    width: 100%;
   }
 
   .search-box {
     position: relative;
     display: flex;
     align-items: center;
+    width: 100%;
   }
 
   .search-input {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
-    padding-left: 30px;
-    width: 50%;
+    width: 100%;
+    padding: 14px var(--spacing-md);
+    padding-left: var(--spacing-2xl);
+    font-size: var(--font-size-base);
+    border: var(--border-width) solid var(--color-neutral-300);
+    border-radius: var(--border-radius-lg);
+    transition: all var(--transition-base);
+    background-color: white;
+  }
+
+  .search-input:hover {
+    border-color: var(--color-neutral-400);
+    box-shadow: 0 1px 6px rgba(32, 33, 36, 0.1);
+  }
+
+  .search-input:focus {
+    border-color: var(--color-primary-500);
+    box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+    outline: none;
   }
 
   .search-icon {
     position: absolute;
-    left: 10px;
-    color: #aaa;
-    transition: color 0.3s;
+    left: var(--spacing-md);
+    color: var(--color-neutral-400);
+    transition: color var(--transition-base);
+    pointer-events: none;
   }
+
   .search-input:focus + .search-icon {
-    color: #666;
-  }
-
-  .suggestions .fi {
-    margin-right: 5px;
-    vertical-align: top;
-  }
-
-  .fa-mars {
-    color: #1565c0;
-  }
-
-  .fa-venus {
-    color: #ec407a;
-  }
-
-  .suggestions .license {
-    color: #aaa;
+    color: var(--color-primary-500);
   }
 
   .suggestions {
-    position: relative;
-    list-style: none;
-    margin-top: 4px;
-    padding: 10px;
-    background: white;
-    width: 50%;
-    min-height: 32px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
     position: absolute;
+    list-style: none;
+    margin-top: var(--spacing-xs);
+    padding: var(--spacing-md);
+    background: white;
+    width: 100%;
+    max-width: 100%;
+    min-height: 32px;
+    border: var(--border-width) solid var(--color-neutral-200);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-lg);
     z-index: 100;
+  }
+
+  @media (min-width: 640px) {
+    .suggestions {
+      max-width: 75%;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .suggestions {
+      max-width: 600px;
+    }
+  }
+
+  .suggestions .fi {
+    margin-right: var(--spacing-sm);
+    vertical-align: top;
+  }
+
+  .suggestions .license {
+    color: var(--color-neutral-400);
   }
 
   .progress-bar {
     position: absolute;
     height: 3px;
-    background-color: #03a9f4;
+    background-color: var(--color-primary-500);
     width: 0%;
     top: 0;
     left: 0;
+    border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
     animation: loadProgress 2s infinite;
   }
 
@@ -361,44 +379,90 @@
     background: none;
     border: none;
     text-align: left;
-    padding: 8px 12px;
+    padding: var(--spacing-sm) var(--spacing-md);
     cursor: pointer;
+    border-radius: var(--border-radius-sm);
+    transition: background-color var(--transition-fast);
+    font-size: var(--font-size-sm);
   }
 
   .suggestion-btn:hover {
-    background-color: #f0f0f0;
+    background-color: var(--color-neutral-100);
+  }
+
+  .suggestion-btn:focus {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+
+  .fa-mars {
+    color: var(--color-male);
+  }
+
+  .fa-venus {
+    color: var(--color-female);
   }
 
   .selected-athlete {
-    margin-top: 5px;
-    font-size: 16px;
+    margin-top: var(--spacing-sm);
+    font-size: var(--font-size-base);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    background-color: white;
+    border-radius: var(--border-radius-md);
+    border: var(--border-width) solid var(--color-neutral-200);
   }
 
   .delete-athlete-btn {
     background: none;
     border: none;
-    color: red;
-    font-size: 16px;
+    color: var(--color-secondary-500);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
     cursor: pointer;
-    margin-right: 5px;
+    padding: var(--spacing-xs);
+    border-radius: var(--border-radius-sm);
+    transition: all var(--transition-fast);
+    min-width: 24px;
+    min-height: 24px;
+  }
+
+  .delete-athlete-btn:hover {
+    background-color: var(--color-secondary-500);
+    color: white;
+  }
+
+  .delete-athlete-btn:focus {
+    outline: 2px solid var(--color-secondary-500);
+    outline-offset: 2px;
   }
 
   .color-indicator {
     width: 20px;
     height: 20px;
     display: inline-block;
-    margin-right: 5px;
-    vertical-align: middle;
+    border-radius: var(--border-radius-sm);
+    flex-shrink: 0;
   }
 
   .database-status {
-    font-size: 11px;
-    color: #888;
-    margin-bottom: 10px;
+    font-size: var(--font-size-xs);
+    color: var(--color-neutral-500);
+    margin-bottom: var(--spacing-md);
     font-style: italic;
   }
 
   .database-status a {
-    font-size: 11px;
+    font-size: var(--font-size-xs);
+    color: var(--color-primary-500);
+    text-decoration: none;
+    transition: color var(--transition-base);
+  }
+
+  .database-status a:hover {
+    color: var(--color-primary-700);
+    text-decoration: underline;
   }
 </style>
