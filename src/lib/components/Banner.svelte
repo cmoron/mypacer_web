@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from 'svelte';
+  import {onMount} from 'svelte';
   import myPacerSVG from '$lib/assets/mypacer.svg?raw';
 
   let mounted = false;
@@ -11,11 +11,12 @@
 
 <header class="banner" class:mounted>
   <div class="banner-content">
+    <!-- Safe: myPacerSVG is a static SVG file imported at build time, not user content -->
+    <!-- eslint-disable svelte/no-at-html-tags -->
     {@html myPacerSVG}
+    <!-- eslint-enable svelte/no-at-html-tags -->
   </div>
-  <div class="banner-subtitle">
-    Tableau d'allures - Recherche d'athlètes FFA
-  </div>
+  <div class="banner-subtitle">Tableau d'allures - Recherche d'athlètes FFA</div>
 </header>
 
 <style>
@@ -25,7 +26,9 @@
     border-bottom: var(--border-width) solid var(--color-neutral-200);
     opacity: 0;
     transform: translateY(-10px);
-    transition: opacity var(--transition-base), transform var(--transition-base);
+    transition:
+      opacity var(--transition-base),
+      transform var(--transition-base);
   }
 
   .banner.mounted {

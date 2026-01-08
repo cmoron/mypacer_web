@@ -10,6 +10,7 @@ export default defineConfig({
       $components: path.resolve('./src/lib/components'),
       $stores: path.resolve('./src/lib/stores'),
       $utils: path.resolve('./src/lib/utils'),
+      '$app/environment': path.resolve('./tests/mocks/app-environment.js'),
     },
   },
   test: {
@@ -20,12 +21,7 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'html', 'lcov'],
       include: ['src/lib/**/*.{js,svelte}'],
-      exclude: [
-        'src/**/*.{test,spec}.{js,ts}',
-        'src/routes/**',
-        '**/*.config.{js,ts}',
-        '**/node_modules/**',
-      ],
+      exclude: ['src/**/*.{test,spec}.{js,ts}', 'src/routes/**', '**/*.config.{js,ts}', '**/node_modules/**'],
     },
   },
 });
