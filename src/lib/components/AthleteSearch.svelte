@@ -23,9 +23,7 @@
   async function fetchAthleteRecords(athlete) {
     isLoading[athlete.id] = true;
     try {
-      const response = await fetch(
-        `${API_URL}/get_athlete_records?ident=${encodeURIComponent(athlete.id)}`
-      );
+      const response = await fetch(`${API_URL}/get_athlete_records?ident=${encodeURIComponent(athlete.id)}`);
       if (response.ok) {
         return response.json();
       } else {
@@ -112,10 +110,7 @@
     activeSearchCount++;
 
     try {
-      const response = await fetch(
-        `${API_URL}/get_athletes_from_db?name=${encodeURIComponent(query)}`,
-        {signal}
-      );
+      const response = await fetch(`${API_URL}/get_athletes_from_db?name=${encodeURIComponent(query)}`, {signal});
       if (response.ok) {
         const data = await response.json();
         athleteSuggestions.set(data);

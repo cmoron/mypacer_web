@@ -580,7 +580,7 @@
 
   @media (min-width: 768px) {
     th {
-      padding: var(--spacing-md) var(--spacing-sm);
+      padding: var(--spacing-sm) var(--spacing-sm);
     }
   }
 
@@ -597,7 +597,7 @@
 
   @media (min-width: 768px) {
     td {
-      padding: var(--spacing-md) var(--spacing-sm);
+      padding: var(--spacing-sm) var(--spacing-sm);
     }
   }
 
@@ -631,5 +631,4 @@
     color: #b71c1c;
     background-color: rgba(255, 255, 255, 0.9);
   }
-
 </style>
