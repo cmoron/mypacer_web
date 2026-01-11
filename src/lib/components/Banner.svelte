@@ -16,7 +16,7 @@
     {@html myPacerSVG}
     <!-- eslint-enable svelte/no-at-html-tags -->
   </div>
-  <div class="banner-subtitle">Tableau d'allures - Recherche d'athlètes FFA</div>
+  <h1 class="banner-subtitle">Tableau d'allures - Recherche d'athlètes FFA</h1>
 </header>
 
 <style>
@@ -48,7 +48,9 @@
   .banner-subtitle {
     text-align: center;
     margin-top: var(--spacing-sm);
+    margin-bottom: 0;
     font-size: var(--font-size-sm);
+    font-weight: 400;
     color: var(--color-neutral-600);
   }
 
