@@ -115,7 +115,6 @@ body {
 /* Touch targets sur mobile */
 @media (pointer: coarse) {
   button,
-  a,
   input,
   select {
     min-height: 44px;
