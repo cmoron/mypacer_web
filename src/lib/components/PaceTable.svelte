@@ -292,6 +292,7 @@
 </div>
 
 <!-- Table markup to display pace data -->
+<div class="table-wrapper">
 <table>
   <!-- Table header -->
   <thead>
@@ -345,6 +346,7 @@
     {/each}
   </tbody>
 </table>
+</div>
 
 <style>
   .top-container {
@@ -535,14 +537,42 @@
   }
 
   /* Table styles - responsive */
+  .table-wrapper {
+    box-shadow: var(--shadow-md);
+    border-radius: var(--border-radius-lg);
+  }
+
+  @media (max-width: 767px) {
+    .table-wrapper {
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      max-height: 70vh;
+    }
+  }
+
   table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     font-size: var(--font-size-sm);
     background: white;
-    border-radius: var(--border-radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-md);
+  }
+
+  /* Arrondis sur les coins de la table */
+  thead tr:first-child th:first-child {
+    border-top-left-radius: var(--border-radius-lg);
+  }
+
+  thead tr:first-child th:last-child {
+    border-top-right-radius: var(--border-radius-lg);
+  }
+
+  tbody tr:last-child td:first-child {
+    border-bottom-left-radius: var(--border-radius-lg);
+  }
+
+  tbody tr:last-child td:last-child {
+    border-bottom-right-radius: var(--border-radius-lg);
   }
 
   @media (min-width: 768px) {
@@ -551,19 +581,10 @@
     }
   }
 
-  @media (max-width: 767px) {
-    table {
-      display: block;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-  }
-
   thead {
     position: sticky;
     top: 0;
     z-index: 10;
-    background-color: var(--color-primary-500);
   }
 
   th {
