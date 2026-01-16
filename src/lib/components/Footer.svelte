@@ -8,8 +8,8 @@
 
 <style>
   .footer {
-    margin-top: var(--spacing-2xl);
-    padding: var(--spacing-xl) 0;
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md) 0;
     border-top: var(--border-width) solid var(--color-neutral-200);
     text-align: center;
   }

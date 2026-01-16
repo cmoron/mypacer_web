@@ -292,59 +292,61 @@
 </div>
 
 <!-- Table markup to display pace data -->
-<table>
-  <!-- Table header -->
-  <thead>
-    <tr>
-      {#if $showVMA}
-        <th>% VMA</th>
-      {/if}
-      <th>t/km</th>
-      <th>km/h</th>
-      {#each columns as column}
-        <th on:click={(event) => handleHighlight(event, column, null)}>
-          {distanceDisplayNames[String(column)] || column}
-          {#if !DEFAULT_DISTANCES.includes(column)}
-            <span
-              class="delete-btn"
-              role="button"
-              tabindex="0"
-              aria-label="Supprimer"
-              on:click={(e) => {
-                e.stopPropagation();
-                console.log('removeDistance', column);
-                console.log(DEFAULT_DISTANCES, column, DEFAULT_DISTANCES.includes(column));
-                removeDistance(column);
-              }}
-              on:keydown={(e) => e.key === 'Enter' && removeDistance(column)}>X</span
-            >
-          {/if}
-        </th>
-      {/each}
-    </tr>
-  </thead>
-  <!-- Table body -->
-  <tbody>
-    {#each paceData as row, rowIndex}
-      <tr on:click={(event) => handleHighlight(event, null, row)}>
+<div class="table-wrapper">
+  <table>
+    <!-- Table header -->
+    <thead>
+      <tr>
         {#if $showVMA}
-          <td class:highlighted={highlighted.row === row}>{Math.round((100 * row.speed) / $selectedVMA)}%</td>
+          <th>% VMA</th>
         {/if}
-        <td class:highlighted={highlighted.row === row} class="col-head">{formatPace(row.pace)}</td>
-        <td class:highlighted={highlighted.row === row} class="col-head">{formatSpeed(row.speed)}</td>
-        {#each columns as column, columnIndex}
-          <td
-            on:click={(event) => handleHighlight(event, column, row)}
-            class:highlighted={highlighted.column === column || highlighted.row === row}
-            style={getAthleteRecordColor(column, row[column])}
-          >
-            {formatTime(row[column], column < 800)}
-          </td>
+        <th>t/km</th>
+        <th>km/h</th>
+        {#each columns as column}
+          <th on:click={(event) => handleHighlight(event, column, null)}>
+            {distanceDisplayNames[String(column)] || column}
+            {#if !DEFAULT_DISTANCES.includes(column)}
+              <span
+                class="delete-btn"
+                role="button"
+                tabindex="0"
+                aria-label="Supprimer"
+                on:click={(e) => {
+                  e.stopPropagation();
+                  console.log('removeDistance', column);
+                  console.log(DEFAULT_DISTANCES, column, DEFAULT_DISTANCES.includes(column));
+                  removeDistance(column);
+                }}
+                on:keydown={(e) => e.key === 'Enter' && removeDistance(column)}>X</span
+              >
+            {/if}
+          </th>
         {/each}
       </tr>
-    {/each}
-  </tbody>
-</table>
+    </thead>
+    <!-- Table body -->
+    <tbody>
+      {#each paceData as row, rowIndex}
+        <tr on:click={(event) => handleHighlight(event, null, row)}>
+          {#if $showVMA}
+            <td class:highlighted={highlighted.row === row}>{Math.round((100 * row.speed) / $selectedVMA)}%</td>
+          {/if}
+          <td class:highlighted={highlighted.row === row} class="col-head">{formatPace(row.pace)}</td>
+          <td class:highlighted={highlighted.row === row} class="col-head">{formatSpeed(row.speed)}</td>
+          {#each columns as column, columnIndex}
+            <td
+              on:click={(event) => handleHighlight(event, column, row)}
+              class:highlighted={highlighted.column === column || highlighted.row === row}
+              style={getAthleteRecordColor(column, row[column])}
+            >
+              {formatTime(row[column], column < 800)}
+            </td>
+          {/each}
+        </tr>
+      {/each}
+    </tbody>
+  </table>
+</div>
 
 <style>
   .top-container {
@@ -535,14 +537,42 @@
   }
 
   /* Table styles - responsive */
+  .table-wrapper {
+    box-shadow: var(--shadow-md);
+    border-radius: var(--border-radius-lg);
+  }
+
+  @media (max-width: 767px) {
+    .table-wrapper {
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      max-height: 70vh;
+    }
+  }
+
   table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     font-size: var(--font-size-sm);
     background: white;
-    border-radius: var(--border-radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-md);
+  }
+
+  /* Arrondis sur les coins de la table */
+  thead tr:first-child th:first-child {
+    border-top-left-radius: var(--border-radius-lg);
+  }
+
+  thead tr:first-child th:last-child {
+    border-top-right-radius: var(--border-radius-lg);
+  }
+
+  tbody tr:last-child td:first-child {
+    border-bottom-left-radius: var(--border-radius-lg);
+  }
+
+  tbody tr:last-child td:last-child {
+    border-bottom-right-radius: var(--border-radius-lg);
   }
 
   @media (min-width: 768px) {
@@ -551,19 +581,10 @@
     }
   }
 
-  @media (max-width: 767px) {
-    table {
-      display: block;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-  }
-
   thead {
     position: sticky;
     top: 0;
     z-index: 10;
-    background-color: var(--color-primary-500);
   }
 
   th {
