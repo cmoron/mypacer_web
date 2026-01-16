@@ -293,59 +293,59 @@
 
 <!-- Table markup to display pace data -->
 <div class="table-wrapper">
-<table>
-  <!-- Table header -->
-  <thead>
-    <tr>
-      {#if $showVMA}
-        <th>% VMA</th>
-      {/if}
-      <th>t/km</th>
-      <th>km/h</th>
-      {#each columns as column}
-        <th on:click={(event) => handleHighlight(event, column, null)}>
-          {distanceDisplayNames[String(column)] || column}
-          {#if !DEFAULT_DISTANCES.includes(column)}
-            <span
-              class="delete-btn"
-              role="button"
-              tabindex="0"
-              aria-label="Supprimer"
-              on:click={(e) => {
-                e.stopPropagation();
-                console.log('removeDistance', column);
-                console.log(DEFAULT_DISTANCES, column, DEFAULT_DISTANCES.includes(column));
-                removeDistance(column);
-              }}
-              on:keydown={(e) => e.key === 'Enter' && removeDistance(column)}>X</span
-            >
-          {/if}
-        </th>
-      {/each}
-    </tr>
-  </thead>
-  <!-- Table body -->
-  <tbody>
-    {#each paceData as row, rowIndex}
-      <tr on:click={(event) => handleHighlight(event, null, row)}>
+  <table>
+    <!-- Table header -->
+    <thead>
+      <tr>
         {#if $showVMA}
-          <td class:highlighted={highlighted.row === row}>{Math.round((100 * row.speed) / $selectedVMA)}%</td>
+          <th>% VMA</th>
         {/if}
-        <td class:highlighted={highlighted.row === row} class="col-head">{formatPace(row.pace)}</td>
-        <td class:highlighted={highlighted.row === row} class="col-head">{formatSpeed(row.speed)}</td>
-        {#each columns as column, columnIndex}
-          <td
-            on:click={(event) => handleHighlight(event, column, row)}
-            class:highlighted={highlighted.column === column || highlighted.row === row}
-            style={getAthleteRecordColor(column, row[column])}
-          >
-            {formatTime(row[column], column < 800)}
-          </td>
+        <th>t/km</th>
+        <th>km/h</th>
+        {#each columns as column}
+          <th on:click={(event) => handleHighlight(event, column, null)}>
+            {distanceDisplayNames[String(column)] || column}
+            {#if !DEFAULT_DISTANCES.includes(column)}
+              <span
+                class="delete-btn"
+                role="button"
+                tabindex="0"
+                aria-label="Supprimer"
+                on:click={(e) => {
+                  e.stopPropagation();
+                  console.log('removeDistance', column);
+                  console.log(DEFAULT_DISTANCES, column, DEFAULT_DISTANCES.includes(column));
+                  removeDistance(column);
+                }}
+                on:keydown={(e) => e.key === 'Enter' && removeDistance(column)}>X</span
+              >
+            {/if}
+          </th>
         {/each}
       </tr>
-    {/each}
-  </tbody>
-</table>
+    </thead>
+    <!-- Table body -->
+    <tbody>
+      {#each paceData as row, rowIndex}
+        <tr on:click={(event) => handleHighlight(event, null, row)}>
+          {#if $showVMA}
+            <td class:highlighted={highlighted.row === row}>{Math.round((100 * row.speed) / $selectedVMA)}%</td>
+          {/if}
+          <td class:highlighted={highlighted.row === row} class="col-head">{formatPace(row.pace)}</td>
+          <td class:highlighted={highlighted.row === row} class="col-head">{formatSpeed(row.speed)}</td>
+          {#each columns as column, columnIndex}
+            <td
+              on:click={(event) => handleHighlight(event, column, row)}
+              class:highlighted={highlighted.column === column || highlighted.row === row}
+              style={getAthleteRecordColor(column, row[column])}
+            >
+              {formatTime(row[column], column < 800)}
+            </td>
+          {/each}
+        </tr>
+      {/each}
+    </tbody>
+  </table>
 </div>
 
 <style>
