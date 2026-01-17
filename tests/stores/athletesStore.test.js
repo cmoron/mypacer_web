@@ -27,7 +27,7 @@ describe('athletesStore', () => {
         name: 'John Doe',
         isLoading: false,
         visible: true,
-        records: [],
+        records: {},
       });
       expect(athletes[0].color).toBeDefined();
     });
