@@ -5,6 +5,7 @@
   import {API_URL} from '$lib/config.js';
   import {selectedAthletes} from '$lib/stores/athletesStore.js';
   import {flagIso3ToIso2} from '$lib/utils/flagsUtils.js';
+  import {getFromCache, setInCache, getAthleteRecordsCacheKey} from '$lib/utils/cacheUtils.js';
   import '/node_modules/flag-icons/css/flag-icons.min.css';
 
   const athleteSuggestions = writable([]);
@@ -17,22 +18,33 @@
   let controller;
 
   /**
-   * Fetches athlete records from the API and logs the data to the console.
+   * Fetches athlete records from the API with cache support.
    * @param {Object} athlete - The athlete object to fetch records for.
+   * @param {boolean} forceRefresh - Force API call ignoring cache.
    */
-  async function fetchAthleteRecords(athlete) {
+  async function fetchAthleteRecords(athlete, forceRefresh = false) {
+    const cacheKey = getAthleteRecordsCacheKey(athlete.id);
+
+    if (!forceRefresh) {
+      const cachedRecords = getFromCache(cacheKey);
+      if (cachedRecords) {
+        return cachedRecords;
+      }
+    }
+
     isLoading[athlete.id] = true;
     try {
       const response = await fetch(`${API_URL}/get_athlete_records?ident=${encodeURIComponent(athlete.id)}`);
       if (response.ok) {
-        return response.json();
+        const records = await response.json();
+        setInCache(cacheKey, records);
+        return records;
       } else {
         console.error('Failed to fetch athlete records');
       }
     } catch (error) {
       console.error('Error fetching athlete records:', error);
     } finally {
-      // set isLoading a false pour cet athlete
       isLoading[athlete.id] = false;
     }
   }
@@ -61,12 +73,16 @@
   }
 
   /**
-   * Toggles the visibility of athlete records in the UI and fetches the records if visible.
+   * Toggles the visibility of athlete records in the UI and fetches the records if needed.
    * @param {Object} athlete - The athlete object to toggle records for.
    */
   function toggleAthleteRecords(athlete) {
     selectedAthletes.toggleVisible(athlete.id);
     if (selectedAthletes.isAthleteVisible(athlete.id)) {
+      const hasRecords = athlete.records && Object.keys(athlete.records).length > 0;
+      if (hasRecords) {
+        return;
+      }
       selectedAthletes.setLoading(athlete.id, true);
       fetchAthleteRecords(athlete)
         .then((records) => {
