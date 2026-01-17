@@ -547,6 +547,7 @@
       overflow: auto;
       -webkit-overflow-scrolling: touch;
       max-height: 70vh;
+      overscroll-behavior: none;
     }
   }
 
