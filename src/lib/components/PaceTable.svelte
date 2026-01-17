@@ -149,7 +149,9 @@
     const athleteColors = [];
 
     for (const athlete of athletes) {
+      if (!athlete.records || typeof athlete.records !== 'object') continue;
       const record = athlete.records[distance];
+      if (record === undefined) continue;
       if (
         Math.abs(time - record) < Math.abs(prevTime - record) &&
         Math.abs(time - record) <= Math.abs(nextTime - record)

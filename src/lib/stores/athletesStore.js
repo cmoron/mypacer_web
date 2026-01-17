@@ -78,7 +78,7 @@ function createAthleteStore() {
           return athletes;
         }
         const color = getNextColor();
-        return [...athletes, {...athleteData, color, isLoading: false, visible: true, records: []}];
+        return [...athletes, {...athleteData, color, isLoading: false, visible: true, records: {}}];
       });
     },
 
