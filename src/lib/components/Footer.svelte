@@ -1,7 +1,12 @@
+<script>
+  const version = __APP_VERSION__;
+</script>
+
 <footer class="footer">
   <div class="footer-content">
     <p>
       <a href="mailto:contact@mypacer.fr">contact@mypacer.fr</a>
+      <span class="version">v{version}</span>
     </p>
   </div>
 </footer>
@@ -28,5 +33,11 @@
   .footer-content a:hover {
     color: var(--color-primary-700);
     text-decoration: underline;
+  }
+
+  .version {
+    margin-left: var(--spacing-md);
+    color: var(--color-neutral-400);
+    font-size: var(--font-size-xs);
   }
 </style>
