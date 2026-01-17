@@ -300,8 +300,8 @@
         {#if $showVMA}
           <th>% VMA</th>
         {/if}
-        <th>t/km</th>
         <th>km/h</th>
+        <th class="sticky-col">t/km</th>
         {#each columns as column}
           <th on:click={(event) => handleHighlight(event, column, null)}>
             {distanceDisplayNames[String(column)] || column}
@@ -331,8 +331,8 @@
           {#if $showVMA}
             <td class:highlighted={highlighted.row === row}>{Math.round((100 * row.speed) / $selectedVMA)}%</td>
           {/if}
-          <td class:highlighted={highlighted.row === row} class="col-head">{formatPace(row.pace)}</td>
           <td class:highlighted={highlighted.row === row} class="col-head">{formatSpeed(row.speed)}</td>
+          <td class:highlighted={highlighted.row === row} class="col-head sticky-col">{formatPace(row.pace)}</td>
           {#each columns as column, columnIndex}
             <td
               on:click={(event) => handleHighlight(event, column, row)}
@@ -627,16 +627,41 @@
     background-color: var(--color-neutral-50);
   }
 
-  tr:hover {
-    background-color: var(--color-primary-100);
+  tr:hover td {
+    background-color: #d9f2fd;
   }
 
   .highlighted {
-    background-color: var(--color-primary-100);
+    background-color: #d9f2fd;
   }
 
   .col-head {
     font-weight: var(--font-weight-bold);
+  }
+
+  .sticky-col {
+    position: sticky;
+    left: 0;
+  }
+
+  th.sticky-col {
+    z-index: 11;
+  }
+
+  td.sticky-col {
+    background: white;
+    z-index: 1;
+  }
+
+  tr:nth-child(even) td.sticky-col {
+    background: var(--color-neutral-50);
+  }
+
+  tr:hover td.sticky-col,
+  tr:nth-child(even):hover td.sticky-col,
+  td.sticky-col.highlighted,
+  tr:nth-child(even) td.sticky-col.highlighted {
+    background: #d9f2fd;
   }
 
   .delete-btn {
