@@ -59,16 +59,16 @@ jobs:
             cd ${{ secrets.INFRA_PATH }}
 
             echo "📥 Pulling production image (version: ${{ steps.version.outputs.version }})..."
-            docker compose -f docker-compose.prod.yml pull web
+            docker-compose -f docker-compose.prod.yml pull web
 
             echo "🔄 Restarting web container..."
-            docker compose -f docker-compose.prod.yml up -d web
+            docker-compose -f docker-compose.prod.yml up -d web
 
             echo "⏳ Waiting for container to be healthy..."
             sleep 10
 
             echo "✅ Deployment completed!"
-            docker compose -f docker-compose.prod.yml ps web
+            docker-compose -f docker-compose.prod.yml ps web
 
       - name: Dry run info
         if: ${{ inputs.dry_run }}
