@@ -4,6 +4,11 @@
 
 <footer class="footer">
   <div class="footer-content">
+    <nav class="footer-product" aria-label="Nos produits">
+      <a href="/">Allures & Athlètes</a>
+      <span aria-hidden="true">·</span>
+      <a href="/club">MyPacer Club</a>
+    </nav>
     <nav class="footer-legal" aria-label="Informations légales">
       <a href="/mentions-legales">Mentions légales</a>
       <span aria-hidden="true">·</span>
@@ -43,12 +48,14 @@
     text-decoration: underline;
   }
 
+  .footer-product,
   .footer-legal {
     margin-bottom: var(--spacing-sm);
     font-size: var(--font-size-xs);
     color: var(--color-neutral-500);
   }
 
+  .footer-product span,
   .footer-legal span {
     margin: 0 var(--spacing-xs);
     color: var(--color-neutral-300);

@@ -19,9 +19,9 @@ module.exports = {
       },
     },
     {
-      // Legal pages contain long prose (French legalese) that must not
-      // be artificially line-broken — prettier already handles whitespace.
-      files: ['src/routes/(legal)/**/*.svelte'],
+      // Pages éditoriales : prose FR longue (mentions légales, argumentaire
+      // marketing) qui ne doit pas être coupée artificiellement par max-len.
+      files: ['src/routes/(legal)/**/*.svelte', 'src/routes/club/**/*.svelte'],
       rules: {
         'max-len': 'off',
       },
