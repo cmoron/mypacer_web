@@ -4,9 +4,17 @@
 
 <footer class="footer">
   <div class="footer-content">
+    <nav class="footer-legal" aria-label="Informations légales">
+      <a href="/mentions-legales">Mentions légales</a>
+      <span aria-hidden="true">·</span>
+      <a href="/cgv">CGV</a>
+      <span aria-hidden="true">·</span>
+      <a href="/cgu">CGU</a>
+      <span aria-hidden="true">·</span>
+      <a href="/confidentialite">Confidentialité</a>
+    </nav>
     <p>
-      <a href="mailto:contact@mypacer.fr">contact@mypacer.fr</a>
-      <span class="version">v{version}</span>
+      <span class="version"> MyPacer v{version} - </span><a href="mailto:contact@mypacer.fr">contact@mypacer.fr</a>
     </p>
   </div>
 </footer>
@@ -33,6 +41,17 @@
   .footer-content a:hover {
     color: var(--color-primary-700);
     text-decoration: underline;
+  }
+
+  .footer-legal {
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-xs);
+    color: var(--color-neutral-500);
+  }
+
+  .footer-legal span {
+    margin: 0 var(--spacing-xs);
+    color: var(--color-neutral-300);
   }
 
   .version {

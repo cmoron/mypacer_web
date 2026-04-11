@@ -18,6 +18,14 @@ module.exports = {
         sourceType: 'script',
       },
     },
+    {
+      // Legal pages contain long prose (French legalese) that must not
+      // be artificially line-broken — prettier already handles whitespace.
+      files: ['src/routes/(legal)/**/*.svelte'],
+      rules: {
+        'max-len': 'off',
+      },
+    },
   ],
   parserOptions: {
     ecmaVersion: 'latest',
