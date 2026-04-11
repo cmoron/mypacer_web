@@ -26,9 +26,9 @@
       recipients: "Jusqu'à 3 adresses email",
       audience: 'Président, secrétaire, community manager',
       features: [
-        'Rapport hebdomadaire automatisé',
-        'Envoi chaque mardi à 8h',
-        'Résultats exhaustifs depuis la base FFA',
+        'Premier rapport dès le dimanche soir',
+        'Rattrapages chaque soir jusqu’au mercredi',
+        'Résultats exhaustifs tirés en direct de la base FFA',
         'Détection des podiums, qualifs individuelles (qi) et par équipe (qe)',
       ],
       highlighted: false,
@@ -57,7 +57,7 @@
     {
       question: 'On a déjà un bénévole qui le fait super bien.',
       answer:
-        "C'est génial — notre but est de lui faire gagner une heure trente par semaine. Il recevra le rapport clé en main le mardi matin et pourra utiliser ce temps pour rédiger des résumés plus sympas ou trier ses photos du week-end.",
+        "C'est génial — notre but est de lui faire gagner une heure trente par semaine. Il recevra un premier rapport dès le dimanche soir, puis des compléments les soirs suivants, et pourra utiliser ce temps pour rédiger des résumés plus sympas ou trier ses photos du week-end.",
     },
     {
       question: "L'offre Staff Technique à 119 €, c'est vraiment utile ?",
@@ -70,19 +70,20 @@
         "MyPacer Club est branché en direct sur la base officielle de la FFA. Il détecte intelligemment les podiums, les qualifs individuelles (qi) et par équipe (qe). Il est souvent plus précis qu'un humain fatigué le dimanche soir.",
     },
     {
-      question: 'Pourquoi le mardi à 8h et pas le dimanche soir ?',
+      question: 'Et si un résultat tombe en retard sur le site de la FFA ?',
       answer:
-        'Parce que certains organisateurs de courses (surtout hors-stade) mettent du temps à transmettre leurs fichiers à la FFA. Le mardi matin, on vous garantit un rapport exhaustif à 100 %.',
+        "C'est exactement pour ça qu'on envoie plusieurs rapports. Le premier part dès le dimanche soir pour communiquer à chaud, puis on déclenche un complément chaque soir jusqu'au mercredi à chaque fois que de nouveaux résultats remontent sur la base FFA. Vous êtes toujours à jour, sans jamais avoir à surveiller la publication.",
     },
   ];
 </script>
 
 <svelte:head>
-  <title>MyPacer Club — Le rapport hebdomadaire des résultats de votre club</title>
+  <title>MyPacer Club — Les résultats de votre club dès le dimanche soir</title>
   <meta
     name="description"
-    content="MyPacer Club envoie chaque mardi matin un rapport exhaustif des résultats de vos athlètes,
-      tiré en direct de la base FFA. Deux offres à partir de 99 € par saison."
+    content="MyPacer Club vous envoie un premier rapport exhaustif des résultats de vos athlètes dès
+      le dimanche soir, puis des rattrapages chaque soir jusqu'au mercredi. Communiquez à chaud à vos
+      licenciés et aux familles, sans surveiller la base FFA. À partir de 99 € par saison."
   />
   <meta name="robots" content="index, follow" />
 </svelte:head>
@@ -91,10 +92,11 @@
   <!-- Hero -->
   <section class="hero">
     <p class="eyebrow">MyPacer Club</p>
-    <h1>Le rapport hebdomadaire des résultats de votre club, chaque mardi matin à 8h.</h1>
+    <h1>Les résultats de votre club dans votre boîte mail, dès le dimanche soir.</h1>
     <p class="lede">
-      Fini la corvée du dimanche soir à éplucher la base FFA. MyPacer Club compile automatiquement tous les résultats de
-      vos licenciés et les envoie directement dans les boîtes mail qui comptent.
+      Communiquez à chaud à vos athlètes, aux familles, à vos réseaux sociaux — et à la presse locale si vous le
+      souhaitez. Premier rapport automatique dès le dimanche soir, puis un rattrapage chaque soir jusqu'au mercredi pour
+      les résultats qui remontent plus tard sur la base FFA.
     </p>
     <div class="cta-row">
       <a class="btn btn-primary" href={DEMO_MAILTO}>Obtenir un rapport de démonstration</a>
@@ -108,27 +110,74 @@
     <div>
       <h2>Le dimanche soir du bénévole</h2>
       <p>
-        Vous connaissez la scène : un bénévole passe son dimanche soir à compiler les résultats du week-end pour
-        préparer la communication du club. Il faut ouvrir dix onglets, croiser les classements, repérer les podiums et
-        les qualifs, faire attention à ne pas oublier un record personnel qui mérite d'être célébré.
+        Vous connaissez la scène : un bénévole passe son dimanche soir à éplucher la base FFA pour compiler les
+        résultats du week-end. Il faut ouvrir dix onglets, croiser les classements, repérer les podiums et les qualifs,
+        faire attention à ne pas oublier un record personnel qui mérite d'être célébré.
       </p>
       <p>
         Et le lundi, les messages arrivent quand même : « vous avez oublié de parler de ma course », « ma fille a fait
-        un record vous n'en avez pas parlé ». La charge mentale est réelle.
+        un record vous n'en avez pas parlé ». La charge mentale est réelle — et pendant ce temps, les résultats
+        refroidissent.
       </p>
     </div>
     <div>
-      <h2>Le mardi matin chez MyPacer Club</h2>
+      <h2>Le dimanche soir chez MyPacer Club</h2>
       <p>
-        À 8h tapantes, le rapport hebdomadaire arrive dans les boîtes mail du bureau (et optionnellement des
-        entraîneurs). Tous les résultats de la semaine, triés, classés, avec les podiums mis en avant et les qualifs
-        détectées automatiquement.
+        À 19h, un premier rapport atterrit automatiquement dans les boîtes mail qui comptent. Les podiums mis en avant,
+        les qualifs individuelles (qi) et par équipe (qe) détectées, les records personnels identifiés. Vous êtes prêts
+        à communiquer <strong>le soir même</strong>.
       </p>
       <p>
-        Le contenu est tiré en direct de la base FFA, donc exhaustif. Le bénévole n'a plus qu'à copier-coller ce qui
-        l'intéresse dans le post Facebook du club, et à profiter de son lundi soir.
+        Les jours suivants, on continue de surveiller la base FFA pour vous : dès qu'un nouveau résultat est publié, un
+        rapport complémentaire part le soir même jusqu'au mercredi. Vos communications restent à jour sans que personne
+        n'ait à aller vérifier.
       </p>
     </div>
+  </section>
+
+  <!-- Timeline : le différenciant -->
+  <section class="timeline-section">
+    <header class="section-header">
+      <p class="eyebrow">Le différenciant</p>
+      <h2>Un rapport immédiat, puis des rattrapages automatiques</h2>
+      <p>
+        Les organisateurs de courses ne transmettent pas toujours leurs fichiers à la FFA le dimanche soir. Certains
+        résultats arrivent le lundi, voire le mercredi. MyPacer Club vous envoie tout au fil de l'eau.
+      </p>
+    </header>
+
+    <ol class="timeline">
+      <li>
+        <span class="timeline-when">Dimanche<br /><strong>19h</strong></span>
+        <div class="timeline-body">
+          <h3>Le rapport à chaud</h3>
+          <p>
+            Premier envoi automatique. Tout ce qui est déjà publié sur la FFA est dans votre boîte mail. Vous
+            communiquez le soir même.
+          </p>
+        </div>
+      </li>
+      <li>
+        <span class="timeline-when">Lundi → mercredi<br /><strong>chaque soir</strong></span>
+        <div class="timeline-body">
+          <h3>Les rattrapages</h3>
+          <p>
+            Dès qu'un nouveau résultat remonte sur la base FFA, un complément part automatiquement le soir. Uniquement
+            les nouveautés — pas de spam.
+          </p>
+        </div>
+      </li>
+      <li>
+        <span class="timeline-when">Mercredi soir<br /><strong>stop</strong></span>
+        <div class="timeline-body">
+          <h3>C'est bouclé</h3>
+          <p>
+            Le week-end est entièrement couvert, sans jamais avoir eu à surveiller la publication des résultats.
+            Rendez-vous dimanche prochain.
+          </p>
+        </div>
+      </li>
+    </ol>
   </section>
 
   <!-- Offres -->
@@ -186,9 +235,10 @@
   <section class="roi">
     <h2>Un outil qui peut se rentabiliser tout seul</h2>
     <p>
-      Le rapport hebdomadaire est très lu par vos licenciés et leurs familles. C'est un espace publicitaire de choix
-      pour un partenaire local : un logo en en-tête de mail, une mention du sponsor, et l'espace peut se vendre
-      <strong>250 € sur la saison</strong>. Votre abonnement est rentabilisé, et il reste même un bénéfice pour le club.
+      Les rapports hebdomadaires sont très lus par vos licenciés et leurs familles — et parfois repris tels quels dans
+      les posts Facebook du club. C'est un espace publicitaire de choix pour un partenaire local : un logo en en-tête de
+      mail, une mention du sponsor, et l'espace peut se vendre <strong>250 € sur la saison</strong>. Votre abonnement
+      est rentabilisé, et il reste même un bénéfice pour le club.
     </p>
   </section>
 
@@ -207,7 +257,7 @@
 
   <!-- CTA final -->
   <section class="final-cta">
-    <h2>Prêt à voir ce que votre club recevrait mardi prochain ?</h2>
+    <h2>Prêt à voir ce que votre club recevrait dimanche prochain ?</h2>
     <p>Envoyez-nous un mot. On génère un rapport de démonstration avec vos vrais athlètes, et on vous le renvoie.</p>
     <a class="btn btn-primary btn-large" href={DEMO_MAILTO}>Obtenir mon rapport de démonstration</a>
     <p class="hero-note">Aucun engagement. Pas de carte bancaire. Juste un mail.</p>
@@ -355,6 +405,63 @@
 
   .two-col p {
     margin: 0 0 var(--spacing-md) 0;
+    color: var(--color-neutral-700);
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /* Timeline (différenciant)                                                   */
+  /* -------------------------------------------------------------------------- */
+  .timeline-section {
+    padding: var(--spacing-2xl) 0;
+    border-top: var(--border-width) solid var(--color-neutral-200);
+  }
+
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: var(--spacing-xl) 0 0 0;
+    display: grid;
+    gap: var(--spacing-md);
+    counter-reset: timeline-step;
+  }
+
+  .timeline li {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: var(--spacing-lg);
+    align-items: start;
+    padding: var(--spacing-lg);
+    background-color: var(--color-neutral-50);
+    border: var(--border-width) solid var(--color-neutral-200);
+    border-left: 4px solid var(--color-primary-500);
+    border-radius: var(--border-radius-lg);
+  }
+
+  .timeline-when {
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-neutral-600);
+    line-height: 1.3;
+  }
+
+  .timeline-when strong {
+    display: block;
+    font-size: var(--font-size-xl);
+    color: var(--color-primary-700);
+    letter-spacing: 0;
+    text-transform: none;
+    margin-top: var(--spacing-xs);
+  }
+
+  .timeline-body h3 {
+    margin: 0 0 var(--spacing-xs) 0;
+    font-size: var(--font-size-lg);
+  }
+
+  .timeline-body p {
+    margin: 0;
     color: var(--color-neutral-700);
   }
 
@@ -611,6 +718,11 @@
     .offers-grid {
       grid-template-columns: 1fr;
       gap: var(--spacing-xl);
+    }
+
+    .timeline li {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-sm);
     }
 
     .avant-premiere-inner {
