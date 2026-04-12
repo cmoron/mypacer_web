@@ -189,10 +189,6 @@
 <ul>
   <li>fournir des informations exactes et tenir à jour les adresses email destinataires ;</li>
   <li>
-    ne <strong>pas redistribuer</strong> le service à des tiers non autorisés et notamment ne pas dépasser le nombre d'adresses
-    email contractuellement prévu par sa formule ;
-  </li>
-  <li>
     informer sans délai le Prestataire de toute anomalie constatée dans les rapports reçus, afin de permettre un
     éventuel correctif ;
   </li>
