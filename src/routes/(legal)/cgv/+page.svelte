@@ -124,26 +124,10 @@
   sans réserve des présentes CGV.
 </p>
 
-<h2>Article 6 — Facturation et paiement</h2>
+<h2>Article 6 — Durée, renouvellement, résiliation</h2>
 
 <p>
-  Le Prestataire émet une <strong>facture en début de cycle d'abonnement</strong>, payable à réception. Le paiement
-  s'effectue par virement bancaire à l'IBAN indiqué sur la facture, ou par tout autre moyen explicitement convenu entre
-  les Parties.
-</p>
-
-<p>
-  Le service n'est activé qu'à réception effective du paiement. En cas de défaut de paiement à l'échéance, et
-  conformément à l'article L.441-10 du Code de commerce, des <strong>pénalités de retard</strong> au taux de trois fois
-  le taux d'intérêt légal seront automatiquement dues, ainsi qu'une
-  <strong>indemnité forfaitaire pour frais de recouvrement de 40 €</strong>.
-</p>
-
-<h2>Article 7 — Durée, renouvellement, résiliation</h2>
-
-<p>
-  L'abonnement est souscrit pour une durée ferme correspondant au cycle d'abonnement choisi. Il prend effet à la date
-  d'activation du service et prend fin de plein droit au terme du cycle.
+  L'abonnement prend effet à la date d'activation du service et prend fin de plein droit au terme du cycle.
 </p>
 
 <div class="callout">
@@ -159,13 +143,28 @@
   <a href="mailto:contact@mypacer.fr">contact@mypacer.fr</a>. La résiliation à l'initiative du Client prend effet à la
   date de réception de la demande et <strong>n'ouvre droit à aucun remboursement</strong>
   au titre de la période non consommée, l'abonnement étant payable d'avance et non remboursable, sauf cas expressément prévus
-  aux articles 8 et 10 des présentes.
+  aux articles 9 et 11 des présentes.
 </p>
 
 <p>
   Le Prestataire peut, de plein droit, suspendre ou résilier l'abonnement en cas de manquement grave du Client à ses
   obligations, notamment en cas d'usage abusif du service, d'utilisation contraire aux lois et règlements, ou de défaut
   de paiement persistant.
+</p>
+
+<h2>Article 7 — Facturation et paiement</h2>
+
+<p>
+  Le Prestataire émet une <strong>facture en début de cycle d'abonnement</strong>, payable à réception. Le paiement
+  s'effectue par virement bancaire à l'IBAN indiqué sur la facture, ou par tout autre moyen explicitement convenu entre
+  les Parties.
+</p>
+
+<p>
+  Le service n'est activé qu'à réception effective du paiement. En cas de défaut de paiement à l'échéance, et
+  conformément à l'article L.441-10 du Code de commerce, des <strong>pénalités de retard</strong> au taux de trois fois
+  le taux d'intérêt légal seront automatiquement dues, ainsi qu'une
+  <strong>indemnité forfaitaire pour frais de recouvrement de 40 €</strong>.
 </p>
 
 <h2>Article 8 — Obligations du Prestataire</h2>
@@ -199,7 +198,7 @@
     informer sans délai le Prestataire de toute anomalie constatée dans les rapports reçus, afin de permettre un
     éventuel correctif ;
   </li>
-  <li>régler la facture émise dans les délais prévus à l'article 6.</li>
+  <li>régler la facture émise dans les délais prévus à l'article 7.</li>
 </ul>
 
 <h2>Article 10 — Force majeure et indisponibilité de la source de données FFA</h2>
@@ -222,9 +221,9 @@
   En cas d'<strong>indisponibilité continue du service supérieure à trente (30) jours consécutifs</strong>
   imputable à la source de données FFA ou à tout autre cas de force majeure, le Client aura la faculté de demander la résiliation
   anticipée de son abonnement avec <strong>remboursement au prorata temporis</strong> de la période non utilisée,
-  calculé à compter du premier jour d'indisponibilité. Cette indemnisation constitue
-  <strong>la seule et unique réparation</strong> due par le Prestataire au titre d'une telle interruption, à l'exclusion de
-  tout dommage direct ou indirect, perte de chance, perte d'image ou manque à gagner.
+  calculé à compter du premier jour d'indisponibilité. Ce remboursement constitue
+  <strong>la seule réparation</strong> due par le Prestataire au titre d'une telle interruption. Les limitations de
+  responsabilité prévues à l'article 11 s'appliquent intégralement.
 </p>
 
 <h2>Article 11 — Limitation de responsabilité</h2>

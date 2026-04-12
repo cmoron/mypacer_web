@@ -11,7 +11,6 @@
       '',
       'Nom du club :',
       'Ville / département :',
-      'Nombre approximatif de licenciés :',
       'Contact (nom, fonction) :',
       '',
       'Merci !',
@@ -121,7 +120,7 @@
       </p>
     </div>
     <div>
-      <h2>Le dimanche soir chez MyPacer Club</h2>
+      <h2>Le dimanche soir avec MyPacer Club</h2>
       <p>
         À 19h, un premier rapport atterrit automatiquement dans les boîtes mail qui comptent. Les podiums mis en avant,
         les qualifs individuelles (qi) et par équipe (qe) détectées, les records personnels identifiés. Vous êtes prêts
@@ -229,17 +228,6 @@
       </p>
       <a class="btn btn-primary" href={DEMO_MAILTO}>Profiter de l'Avant-Première</a>
     </div>
-  </section>
-
-  <!-- ROI sponsoring -->
-  <section class="roi">
-    <h2>Un outil qui peut se rentabiliser tout seul</h2>
-    <p>
-      Les rapports hebdomadaires sont très lus par vos licenciés et leurs familles — et parfois repris tels quels dans
-      les posts Facebook du club. C'est un espace publicitaire de choix pour un partenaire local : un logo en en-tête de
-      mail, une mention du sponsor, et l'espace peut se vendre <strong>250 € sur la saison</strong>. Votre abonnement
-      est rentabilisé, et il reste même un bénéfice pour le club.
-    </p>
   </section>
 
   <!-- FAQ -->
