@@ -126,9 +126,7 @@
 
 <h2>Article 6 — Durée, renouvellement, résiliation</h2>
 
-<p>
-  L'abonnement prend effet à la date d'activation du service et prend fin de plein droit au terme du cycle.
-</p>
+<p>L'abonnement prend effet à la date d'activation du service et prend fin de plein droit au terme du cycle.</p>
 
 <div class="callout">
   <p>
@@ -222,8 +220,8 @@
   imputable à la source de données FFA ou à tout autre cas de force majeure, le Client aura la faculté de demander la résiliation
   anticipée de son abonnement avec <strong>remboursement au prorata temporis</strong> de la période non utilisée,
   calculé à compter du premier jour d'indisponibilité. Ce remboursement constitue
-  <strong>la seule réparation</strong> due par le Prestataire au titre d'une telle interruption. Les limitations de
-  responsabilité prévues à l'article 11 s'appliquent intégralement.
+  <strong>la seule réparation</strong> due par le Prestataire au titre d'une telle interruption. Les limitations de responsabilité
+  prévues à l'article 11 s'appliquent intégralement.
 </p>
 
 <h2>Article 11 — Limitation de responsabilité</h2>
