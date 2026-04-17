@@ -14,7 +14,7 @@
       'Contact (nom, fonction) :',
       '',
       'Merci !',
-    ].join('\n')
+    ].join('\r\n')
   );
   const DEMO_MAILTO = `mailto:contact@mypacer.fr?subject=${DEMO_SUBJECT}&body=${DEMO_BODY}`;
 
