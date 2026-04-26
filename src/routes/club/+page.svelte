@@ -1,4 +1,6 @@
 <script>
+  import ClubReportMockup from '$lib/components/ClubReportMockup.svelte';
+
   // Pré-remplissage du mailto de demande de démo.
   // Le body guide le visiteur à donner les infos minimales pour qu'Estelle
   // puisse générer un vrai rapport personnalisé en retour.
@@ -97,6 +99,11 @@
       souhaitez. Premier rapport automatique dès le dimanche soir, puis un rattrapage chaque soir jusqu'au mercredi pour
       les résultats qui remontent plus tard sur la base FFA.
     </p>
+
+    <div class="hero-mockup">
+      <ClubReportMockup />
+    </div>
+
     <div class="cta-row">
       <a class="btn btn-primary" href={DEMO_MAILTO}>Obtenir un rapport de démonstration</a>
       <a class="btn btn-ghost" href="#offres">Voir les offres</a>
@@ -302,6 +309,10 @@
     font-size: var(--font-size-lg);
     color: var(--color-neutral-700);
     max-width: 680px;
+    margin: 0 auto var(--spacing-xl) auto;
+  }
+
+  .hero-mockup {
     margin: 0 auto var(--spacing-xl) auto;
   }
 
