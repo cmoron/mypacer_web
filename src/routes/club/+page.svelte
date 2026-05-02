@@ -53,7 +53,7 @@
     {
       question: "On n'a plus de budget à cette période de l'année.",
       answer:
-        "C'est justement pour ça que nous proposons l'offre Avant-Première : vous sécurisez l'outil sur le budget de la saison prochaine, et vous l'utilisez gratuitement dès maintenant pour préparer les Interclubs.",
+        "C'est justement pour ça que nous proposons l'Avant-Première : vous préparez la saison 2026-2027, et vous utilisez MyPacer gratuitement dès maintenant pour les compétitions de fin de saison. Si vos Interclubs ont déjà commencé, on peut déjà vous aider à récupérer les résultats publiés et à suivre les prochaines échéances.",
     },
     {
       question: 'On a déjà un bénévole qui le fait super bien.',
@@ -228,12 +228,14 @@
   <section class="avant-premiere">
     <div class="avant-premiere-inner">
       <p class="eyebrow">Offre Avant-Première</p>
-      <h2>Équipez-vous aujourd'hui, on vous offre la fin de saison</h2>
+      <h2>Équipez-vous maintenant, on vous offre la fin de saison</h2>
       <p>
         Vous souscrivez pour la saison 2026-2027 ? On vous ouvre l'accès <strong>immédiatement</strong> et
-        <strong>gratuitement</strong> jusqu'au début de la saison couverte. Vos Interclubs de mai sont déjà dans le rapport.
+        <strong>gratuitement</strong> jusqu'au début de la saison couverte. Interclubs, meetings, championnats : vos
+        prochains résultats peuvent déjà être suivis dans MyPacer Club — même si votre calendrier régional a déjà
+        commencé.
       </p>
-      <a class="btn btn-primary" href={DEMO_MAILTO}>Profiter de l'Avant-Première</a>
+      <a class="btn btn-primary" href={DEMO_MAILTO}>Recevoir un rapport pour mon club</a>
     </div>
   </section>
 
