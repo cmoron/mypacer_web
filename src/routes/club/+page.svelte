@@ -231,9 +231,8 @@
       <h2>Équipez-vous maintenant, on vous offre la fin de saison</h2>
       <p>
         Vous souscrivez pour la saison 2026-2027 ? On vous ouvre l'accès <strong>immédiatement</strong> et
-        <strong>gratuitement</strong> jusqu'au début de la saison couverte. Interclubs, meetings, championnats : vos
-        prochains résultats peuvent déjà être suivis dans MyPacer Club — même si votre calendrier régional a déjà
-        commencé.
+        <strong>gratuitement</strong> jusqu'au début de la saison couverte. Interclubs, meetings, championnats : vos prochains
+        résultats peuvent déjà être suivis dans MyPacer Club — même si votre calendrier régional a déjà commencé.
       </p>
       <a class="btn btn-primary" href={DEMO_MAILTO}>Recevoir un rapport pour mon club</a>
     </div>

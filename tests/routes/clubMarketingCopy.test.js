@@ -1,7 +1,7 @@
-import { describe, expect, it } from 'vitest';
-import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { dirname, resolve } from 'node:path';
+import {describe, expect, it} from 'vitest';
+import {readFileSync} from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import {dirname, resolve} from 'node:path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const clubPage = readFileSync(resolve(__dirname, '../../src/routes/club/+page.svelte'), 'utf8');
