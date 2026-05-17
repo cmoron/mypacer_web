@@ -29,7 +29,7 @@
       features: [
         'Premier rapport dès le dimanche soir',
         'Rattrapages chaque soir jusqu’au mercredi',
-        'Résultats exhaustifs tirés en direct de la base FFA',
+        'Synthèse hebdomadaire à partir des résultats publics FFA',
         'Détection des podiums, qualifs individuelles (qi) et par équipe (qe)',
       ],
       highlighted: false,
@@ -53,12 +53,12 @@
     {
       question: "On n'a plus de budget à cette période de l'année.",
       answer:
-        "C'est justement pour ça que nous proposons l'Avant-Première : vous préparez la saison 2026-2027, et vous utilisez MyPacer gratuitement dès maintenant pour les compétitions de fin de saison. Si vos Interclubs ont déjà commencé, on peut déjà vous aider à récupérer les résultats publiés et à suivre les prochaines échéances.",
+        "C'est justement pour ça que nous proposons un essai gratuit d'un mois : vous testez sur plusieurs week-ends, sans engagement, avant de décider si le gain de temps justifie l'abonnement pour la saison 2026-2027.",
     },
     {
       question: 'On a déjà un bénévole qui le fait super bien.',
       answer:
-        "C'est génial — notre but est de lui faire gagner une heure trente par semaine. Il recevra un premier rapport dès le dimanche soir, puis des compléments les soirs suivants, et pourra utiliser ce temps pour rédiger des résumés plus sympas ou trier ses photos du week-end.",
+        "C'est génial — notre but n'est pas de le remplacer, mais de lui faciliter la récupération des résultats et de réduire le risque d'oublier quelqu'un. Il reçoit une base consolidée dès le dimanche soir, puis des rattrapages les lundi, mardi et mercredi soir si des résultats FFA sont publiés en retard. Il garde la main sur le ton et peut utiliser ce temps pour rédiger des résumés plus sympas ou trier ses photos du week-end.",
     },
     {
       question: "L'offre Staff Technique à 119 €, c'est vraiment utile ?",
@@ -82,7 +82,7 @@
   <title>MyPacer Club — Les résultats de votre club dès le dimanche soir</title>
   <meta
     name="description"
-    content="MyPacer Club vous envoie un premier rapport exhaustif des résultats de vos athlètes dès
+    content="MyPacer Club vous envoie une synthèse hebdomadaire des résultats de vos athlètes dès
       le dimanche soir, puis des rattrapages chaque soir jusqu'au mercredi. Communiquez à chaud à vos
       licenciés et aux familles, sans surveiller la base FFA. À partir de 99 € par saison."
   />
@@ -224,15 +224,15 @@
     </p>
   </section>
 
-  <!-- Avant-première -->
+  <!-- Essai gratuit -->
   <section class="avant-premiere">
     <div class="avant-premiere-inner">
-      <p class="eyebrow">Offre Avant-Première</p>
-      <h2>Équipez-vous maintenant, on vous offre la fin de saison</h2>
+      <p class="eyebrow">Essai gratuit</p>
+      <h2>Testez MyPacer Club pendant 1 mois, sans engagement</h2>
       <p>
-        Vous souscrivez pour la saison 2026-2027 ? On vous ouvre l'accès <strong>immédiatement</strong> et
-        <strong>gratuitement</strong> jusqu'au début de la saison couverte. Interclubs, meetings, championnats : vos prochains
-        résultats peuvent déjà être suivis dans MyPacer Club — même si votre calendrier régional a déjà commencé.
+        On active votre club pendant <strong>un mois complet</strong> pour juger sur plusieurs week-ends : rapport du dimanche,
+        rattrapages jusqu'au mercredi, qualité des podiums, risque d'oubli réduit et temps réellement gagné. Si l'essai vous convainc, vous
+        choisissez ensuite l'offre annuelle adaptée pour la saison 2026-2027.
       </p>
       <a class="btn btn-primary" href={DEMO_MAILTO}>Recevoir un rapport pour mon club</a>
     </div>
