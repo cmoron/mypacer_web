@@ -231,8 +231,8 @@
       <h2>Testez MyPacer Club pendant 1 mois, sans engagement</h2>
       <p>
         On active votre club pendant <strong>un mois complet</strong> pour juger sur plusieurs week-ends : rapport du dimanche,
-        rattrapages jusqu'au mercredi, qualité des podiums, risque d'oubli réduit et temps réellement gagné. Si l'essai vous convainc, vous
-        choisissez ensuite l'offre annuelle adaptée pour la saison 2026-2027.
+        rattrapages jusqu'au mercredi, qualité des podiums, risque d'oubli réduit et temps réellement gagné. Si l'essai vous
+        convainc, vous choisissez ensuite l'offre annuelle adaptée pour la saison 2026-2027.
       </p>
       <a class="btn btn-primary" href={DEMO_MAILTO}>Recevoir un rapport pour mon club</a>
     </div>

@@ -14,7 +14,7 @@ describe('MyPacer Club marketing copy', () => {
     expect(clubPage).not.toContain('préparer les Interclubs.');
     expect(clubPage).not.toContain("jusqu'au 31 mai");
     expect(clubPage).not.toContain('jusqu’au 31 mai');
-    expect(clubPage).not.toContain("on vous offre la fin de saison");
+    expect(clubPage).not.toContain('on vous offre la fin de saison');
     expect(normalizedClubPage).toContain('Testez MyPacer Club pendant 1 mois, sans engagement');
     expect(textOnlyClubPage).toContain('On active votre club pendant un mois complet');
     expect(normalizedClubPage).toContain("notre but n'est pas de le remplacer");
