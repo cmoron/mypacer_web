@@ -6,7 +6,7 @@
 
   const clubName = 'AC Démo Athlétisme';
   const dateRange = 'du 17/03 au 23/03';
-  const stats = {athletes: 12, highlights: 3, perfsHigh: 4};
+  const stats = {athletes: 12, highlights: 4, perfsHigh: 5};
 
   const highlights = [
     {
@@ -31,6 +31,27 @@
       meta: '978 pts • N3 • 2e',
       qualif: {label: 'QE', bg: '#f3e8ff', color: '#6b21a8'},
     },
+    {
+      medal: '🥇',
+      borderColor: '#f59e0b',
+      bgCard: '#fffbeb',
+      nom: 'GIRARD Patrick',
+      epreuve: '10 km Route',
+      tour: '',
+      perf: '38\'12"',
+      meta: 'R6 • 512e (1er M4)',
+    },
+    {
+      medal: '',
+      borderColor: '#e2e8f0',
+      bgCard: '#ffffff',
+      nom: 'ROUSSEAU Karim',
+      epreuve: 'Marathon',
+      tour: '',
+      perf: '2h41\'18"',
+      meta: '1 187 pts • IR2 • 1 234e',
+      record: true,
+    },
   ];
 
   const results = [
@@ -43,7 +64,7 @@
     },
     {
       group: '23/03 à Saint-Étienne',
-      items: [{nom: 'MOREAU Anaïs', epreuve: '1 500m', perf: '4\'38"15', meta: '821 pts • IR4 • 4e'}],
+      items: [{nom: 'MOREAU Anaïs', epreuve: '1 500m', perf: '4\'38"15', meta: '821 pts • IR4 • 4e (2e F)'}],
     },
   ];
 </script>
@@ -82,13 +103,25 @@
       </tr>
     </table>
 
+    <!-- Légende des badges -->
+    <div class="legend">
+      <span class="record">RP</span> Record personnel
+      <span class="legend-sep" aria-hidden="true">·</span>
+      <span class="qualif legend-qi">QI</span> Qualification individuelle
+      <span class="legend-sep" aria-hidden="true">·</span>
+      <span class="qualif legend-qe">QE</span> Qualification équipe
+    </div>
+
     <!-- Highlights -->
     <div class="highlights">
       <h4 class="highlights-title">🏆 Podiums et hautes performances</h4>
       {#each highlights as h}
         <div class="card" style:border-left-color={h.borderColor} style:background-color={h.bgCard}>
           <div class="card-left">
-            <div class="card-name"><span class="medal">{h.medal}</span> {h.nom}</div>
+            <div class="card-name">
+              {#if h.medal}<span class="medal">{h.medal}</span>
+              {/if}{h.nom}
+            </div>
             <div class="card-event">
               {h.epreuve}{#if h.tour}
                 <span class="tour">- {h.tour}</span>{/if}
@@ -101,6 +134,9 @@
                 <span class="qualif" style:background-color={h.qualif.bg} style:color={h.qualif.color}>
                   {h.qualif.label}
                 </span>
+              {/if}
+              {#if h.record}
+                <span class="record">RP</span>
               {/if}
             </div>
             <div class="card-meta">{h.meta}</div>
@@ -351,9 +387,45 @@
   .qualif {
     padding: 1px 5px;
     border-radius: 3px;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: bold;
     letter-spacing: 0.03em;
+  }
+
+  /* Badge record personnel — violet « record de secteur » F1, fidèle à reporter.py */
+  .record {
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.03em;
+    background-color: #7c3aed;
+    color: #ffffff;
+  }
+
+  .legend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 18px;
+  }
+
+  .legend-qi {
+    background-color: #dbeafe;
+    color: #1e40af;
+  }
+
+  .legend-qe {
+    background-color: #f3e8ff;
+    color: #6b21a8;
+  }
+
+  .legend-sep {
+    color: #cbd5e1;
   }
 
   .card-meta {

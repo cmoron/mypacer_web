@@ -49,6 +49,26 @@
     },
   ];
 
+  const smartFeatures = [
+    {
+      title: 'Podiums scratch et catégories',
+      body: "512e au scratch, mais 1er en M4. Un classement brut l'aurait noyé dans la masse — MyPacer Club repère la médaille de catégorie et la met en avant. Vos masters, vos jeunes, vos féminines : chacun voit sa vraie place.",
+    },
+    {
+      title: 'Détection des records personnels',
+      body: "Quand un athlète bat son record personnel, le rapport le signale d'un badge.",
+      badges: [{label: 'RP', bg: '#7c3aed', color: '#ffffff'}],
+    },
+    {
+      title: 'Qualifications aux championnats (qi/qe)',
+      body: 'Qualifications individuelles et par équipe : détectés en direct depuis la base FFA, sans risque d’oubli.',
+      badges: [
+        {label: 'QI', bg: '#dbeafe', color: '#1e40af'},
+        {label: 'QE', bg: '#f3e8ff', color: '#6b21a8'},
+      ],
+    },
+  ];
+
   const faq = [
     {
       question: "On n'a plus de budget à cette période de l'année.",
@@ -184,6 +204,36 @@
         </div>
       </li>
     </ol>
+  </section>
+
+  <!-- Intelligence du rapport -->
+  <section class="smart-section">
+    <header class="section-header">
+      <p class="eyebrow">Plus qu'un copier-coller</p>
+      <h2>Plus fin qu'un classement au scratch</h2>
+      <p>
+        Le rapport ne se contente pas de recopier la base FFA : il lit entre les lignes pour ne rien laisser passer de
+        ce qui mérite d'être célébré.
+      </p>
+    </header>
+
+    <div class="smart-grid">
+      {#each smartFeatures as feature}
+        <div class="smart-card">
+          <h3>{feature.title}</h3>
+          {#if feature.badges}
+            <div class="smart-badges">
+              {#each feature.badges as badge}
+                <span class="report-badge" style:background-color={badge.bg} style:color={badge.color}>
+                  {badge.label}
+                </span>
+              {/each}
+            </div>
+          {/if}
+          <p>{feature.body}</p>
+        </div>
+      {/each}
+    </div>
   </section>
 
   <!-- Offres -->
@@ -466,6 +516,54 @@
   }
 
   /* -------------------------------------------------------------------------- */
+  /* Intelligence du rapport                                                    */
+  /* -------------------------------------------------------------------------- */
+  .smart-section {
+    padding: var(--spacing-2xl) 0;
+    border-top: var(--border-width) solid var(--color-neutral-200);
+  }
+
+  .smart-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+  }
+
+  .smart-card {
+    padding: var(--spacing-lg);
+    background-color: var(--color-neutral-50);
+    border: var(--border-width) solid var(--color-neutral-200);
+    border-top: 4px solid var(--color-primary-500);
+    border-radius: var(--border-radius-lg);
+  }
+
+  .smart-card h3 {
+    font-size: var(--font-size-lg);
+    margin: 0 0 var(--spacing-sm) 0;
+  }
+
+  .smart-card p {
+    margin: 0;
+    color: var(--color-neutral-700);
+    font-size: var(--font-size-sm);
+  }
+
+  /* Badges reproduisant fidèlement la charte des pilules du rapport (reporter.py) */
+  .smart-badges {
+    display: flex;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .report-badge {
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.03em;
+  }
+
+  /* -------------------------------------------------------------------------- */
   /* Section headers                                                            */
   /* -------------------------------------------------------------------------- */
   .section-header {
@@ -696,7 +794,8 @@
     }
 
     .two-col,
-    .offers-grid {
+    .offers-grid,
+    .smart-grid {
       grid-template-columns: 1fr;
       gap: var(--spacing-xl);
     }

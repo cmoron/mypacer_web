@@ -26,4 +26,14 @@ describe('MyPacer Club marketing copy', () => {
     expect(clubPage).not.toContain('rapport exhaustif');
     expect(clubPage).toContain('Synthèse hebdomadaire à partir des résultats publics FFA');
   });
+
+  it('highlights the smart enrichments with report-charte badges', () => {
+    expect(normalizedClubPage).toContain('Podiums scratch et catégories');
+    expect(normalizedClubPage).toContain('Détection des records personnels');
+    expect(normalizedClubPage).toContain('Qualifications aux championnats (qi/qe)');
+    // Badges des smart cards aux couleurs exactes du rapport (reporter.py) :
+    // RP violet, QE violet clair.
+    expect(clubPage).toContain('#7c3aed');
+    expect(clubPage).toContain('#6b21a8');
+  });
 });
