@@ -1,9 +1,16 @@
 <script>
   import PaceTable from '$lib/components/PaceTable.svelte';
+
+  const description =
+    "Outil gratuit pour coureurs : générez vos tables d'allures (10km, Semi, Marathon) " +
+    'et consultez les records officiels de tous les licenciés FFA.';
 </script>
 
 <svelte:head>
   <title>MyPacer - Tableau d'allures & Recherche FFA</title>
+  <meta name="description" content={description} />
+  <meta property="og:title" content="MyPacer - Tableau d'allures et recherche FFA" />
+  <meta property="og:description" content="Calculez vos temps de passage et comparez vos records avec la base FFA." />
 </svelte:head>
 
 <!-- Contenu SEO statique pour les moteurs de recherche et utilisateurs sans JS -->
