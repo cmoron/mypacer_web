@@ -8,6 +8,8 @@ export default {
       pages: 'dist',
       assets: 'dist',
       precompress: false,
+      // Coquille servie par nginx sur les URL inconnues (vrai code 404).
+      fallback: '404.html',
       strict: true,
     }),
     alias: {
