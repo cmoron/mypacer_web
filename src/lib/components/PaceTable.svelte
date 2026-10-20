@@ -5,6 +5,7 @@
 
   import {formatPace, formatSpeed, formatTime} from '$lib/utils/timeUtils.js';
   import {setupStore} from '$lib/utils/storeUtils.js';
+  import {computePaceTable, tableColumns} from '$lib/utils/paceTable.js';
   import {DEFAULT_INCREMENT, DEFAULT_MIN_PACE, DEFAULT_MAX_PACE, DEFAULT_VMA} from '$lib/utils/constants.js';
 
   import {
@@ -21,9 +22,10 @@
   import AthleteSearch from '$lib/components/AthleteSearch.svelte';
   import {showVMA, selectedVMA} from '$lib/stores/vmaStore.js';
 
-  // State variables for storing pace data and table columns
-  let paceData = [];
-  let columns = [];
+  // Tableau par défaut calculé dès le prérendu : le HTML servi contient les
+  // allures (SEO, affichage avant JS). L'API le remplace ensuite, comme avant.
+  let paceData = computePaceTable($selectedMinPace, $selectedMaxPace, $selectedIncrement, $distances);
+  let columns = tableColumns(paceData);
   let athletes = [];
   let errorMessage = '';
   let prevSelectedMinPace = DEFAULT_MIN_PACE;
@@ -104,11 +106,7 @@
       if (response.ok) {
         paceData = await response.json();
         if (paceData.length > 0) {
-          columns = Object.keys(paceData[0])
-            .filter((key) => key !== 'pace' && key != 'speed')
-            .sort((a, b) => parseInt(a) - parseInt(b))
-            .map(Number)
-            .sort((a, b) => a - b);
+          columns = tableColumns(paceData);
         }
       } else {
         console.error('Error fetching data from the API');
