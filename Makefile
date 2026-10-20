@@ -1,10 +1,16 @@
-.PHONY: help install test lint format check fix clean ci
+.PHONY: help install dev dev-docker test lint format check fix clean ci
 
 help: ## Show help for make commands
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
 install: ## Install development dependencies
 	npm ci
+
+dev: ## Run the Vite dev server on http://localhost:5173 (API expected on :8000)
+	npm run dev
+
+dev-docker: ## Run the dev server in Docker (docker-compose.dev.yml)
+	docker compose -f docker-compose.dev.yml up
 
 test: ## Run tests
 	npm run test:run

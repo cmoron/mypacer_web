@@ -54,7 +54,7 @@ L'application communique avec une API FastAPI ([mypacer_api](https://github.com/
 npm install
 
 # Lancement du serveur de développement
-npm run dev
+npm run dev   # ou : make dev
 ```
 
 L'application sera accessible sur `http://localhost:5173`
@@ -68,7 +68,7 @@ L'application sera accessible sur `http://localhost:5173`
 docker compose -f docker-compose.dev.yml up
 
 # Ou avec make
-make dev
+make dev-docker
 ```
 
 Voir [docs/DOCKER_DEV_SETUP.md](docs/DOCKER_DEV_SETUP.md) pour la documentation complète.
