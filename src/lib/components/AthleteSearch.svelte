@@ -249,6 +249,9 @@
             {#if athlete.license_id}
               <i class="license">{athlete.license_id}</i>
             {/if}
+            {#if athlete.club}
+              <span class="club">{athlete.club}{athlete.category ? ` (${athlete.category})` : ''}</span>
+            {/if}
           </button>
         </li>
       {/each}
@@ -365,6 +368,11 @@
 
   .suggestions .license {
     color: var(--color-neutral-400);
+  }
+
+  .suggestions .club {
+    color: var(--color-neutral-500);
+    font-size: 0.85em;
   }
 
   .progress-bar {
